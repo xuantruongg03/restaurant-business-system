@@ -88,7 +88,7 @@ public class MenuDAO {
                 .list());
         List<Menu> menuList = new ArrayList<>();
         for (Map<String, Object> menu : menus) {
-            menuList.add(new Menu((String) menu.get("id_menu"), (String) menu.get("name"), (String) menu.get("id_restaurant")));
+            menuList.add(new Menu((String) menu.get("id_menu"), (String) menu.get("id_restaurant"), (String) menu.get("name")));
         }
         return menuList;
     }

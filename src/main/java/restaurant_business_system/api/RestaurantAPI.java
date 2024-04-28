@@ -1,7 +1,6 @@
 package restaurant_business_system.api;
 
 import io.dropwizard.auth.Auth;
-import io.dropwizard.hibernate.UnitOfWork;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -30,7 +29,6 @@ public class RestaurantAPI {
     @POST
     @Path("/create")
     @Produces(MediaType.APPLICATION_JSON)
-    @UnitOfWork
     public Response addRestaurant(@Auth User u, Restaurant r) {
         if (u != null) {
             Restaurant re = new Restaurant(r.getName(), u.getId());

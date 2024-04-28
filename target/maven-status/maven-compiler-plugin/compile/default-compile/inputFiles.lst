@@ -1,9 +1,7 @@
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\AccountAPI.java
-D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\food\AddFood.java
-D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\food\GetFood.java
-D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\menu\GetMenu.java
-D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\menu\MenuAPI.java
-D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\restaurant\RestaurantAPI.java
+D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\FoodApi.java
+D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\MenuAPI.java
+D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\RestaurantAPI.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\auth\BasicAuthenticator.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\auth\UserAuthenticator.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\core\User.java
@@ -13,10 +11,12 @@ D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\DBManager.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\food\Food.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\food\FoodDAO.java
+D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\food\FoodDTO.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\menu\Menu.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\menu\MenuDAO.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\restaurant\Restaurant.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\restaurant\RestaurantDAO.java
+D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\resources\CorsFilter.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\resources\GenerateID.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\restaurant_business_systemApplication.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\RestaurantBusinessSystemConfiguration.java

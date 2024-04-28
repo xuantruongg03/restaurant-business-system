@@ -6,6 +6,8 @@ import io.dropwizard.auth.Auth;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Response;
 import restaurant_business_system.core.User;
 import restaurant_business_system.db.menu.Menu;
@@ -57,7 +59,8 @@ public class MenuAPI {
      */
     @GET
     @Path("/get")
-    public Response getMenu(String idRestaurant) {
+    @Produces("application/json")
+    public Response getMenu(@QueryParam("idRestaurant") String idRestaurant){
         List<Menu> menu = dao.get(idRestaurant);
         if (menu != null) {
             return Response.ok(menu).build();

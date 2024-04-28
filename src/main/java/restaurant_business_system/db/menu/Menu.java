@@ -22,6 +22,9 @@ public class Menu {
         this.name = name;
     }
 
+    public Menu() {
+    }
+
     public String getIdMenu() {
         return idMenu;
     }

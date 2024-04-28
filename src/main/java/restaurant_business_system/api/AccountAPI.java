@@ -40,22 +40,15 @@ public class AccountAPI {
         }
     }
 
-    // @POST
-    // @Path("/login")
-    // @Consumes(MediaType.APPLICATION_JSON)
-    // @UnitOfWork
-    // public Response login(Account a) {
-    //     Account account = dao.findByUsernameAndPassword(a.getUsername(), a.getPassword());
-    //     if (account != null) {
-    //         return Response.ok(account).type(MediaType.APPLICATION_JSON).build();
-    //     } else {
-    //         return Response.status(Response.Status.UNAUTHORIZED).build();
-    //     }
-    // }
-
     @POST
-    @Path("/logout")
-    public void logout() {
+    @Path("/login")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response login(Account a) {
+        Account account = dao.findByUsernameAndPassword(a.getUsername(), a.getPassword());
+        if (account != null) {
+            return Response.ok(account).type(MediaType.APPLICATION_JSON).build();
+        } else {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
     }
-
 }

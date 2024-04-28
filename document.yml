@@ -74,26 +74,58 @@ paths:
                 responses:
                     "200":
                         description: OK
-    /menu/addItem:
-            post:
+    /menu/get:
+            get:
                 tags:
                     - Menu
-                summary: Add a new item to a menu
-                description: Add a new item to a menu
+                summary: Get all menus from a restaurant
+                description: Get all menus from a restaurant
+                parameters:
+                    - name: idRestaurant
+                      in: query
+                      required: true
+                      schema:
+                        type: string
+                responses:
+                    "200":
+                        description: OK
+    /food/create:
+            post:
+                tags:
+                    - Food
+                summary: Create a new food to a menu
+                description: Create a new food to a menu
                 security:
-                    - BasicAuth: [username:password]
+                    - BasicAuth: [abc:123]
                 requestBody:
                     content:
                         raw:
                             schema:
                                 type: object
                                 properties:
+                                    idMenu:
+                                        type: string
                                     name:
                                         type: string
                                     price:
                                         type: number
-                                    idMenu:
+                                    image:
                                         type: string
+                responses:
+                    "200":
+                        description: OK
+    /food/get:
+            get:
+                tags:
+                    - Food
+                summary: Get all foods from a menu
+                description: Get all foods from a menu
+                parameters:
+                    - name: idMenu
+                      in: query
+                      required: true
+                      schema:
+                        type: string
                 responses:
                     "200":
                         description: OK
