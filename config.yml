@@ -1,0 +1,13 @@
+---
+logging:
+  level: INFO
+  loggers:
+    restaurant_business_system: DEBUG
+database:
+  driverClass: com.mysql.cj.jdbc.Driver
+  user: root
+  password: lexuantruong2k3@
+  url: jdbc:mysql://localhost:3306/restaurant_business_system
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.MySQL8Dialect

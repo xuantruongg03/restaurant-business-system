@@ -1,0 +1,99 @@
+openapi: "3.0.2"
+info:
+    title: Restaurant Business System API
+    version: "1.0"
+servers:
+    - url: http://localhost:8080
+      description: Local server
+paths:
+    /healthcheck:
+        get:
+            tags:
+                - Healthcheck
+            summary: Healthcheck
+            description: Healthcheck
+            responses:
+                "200":
+                    description: OK
+    /account/register:
+        post:
+            tags:
+                - Account
+            summary: Register a new account
+            description: Register a new account
+            requestBody:
+                content:
+                    raw:
+                        schema:
+                            type: object
+                            properties:
+                                username:
+                                    type: string
+                                password:
+                                    type: string
+            responses:
+                "200":
+                    description: OK
+    /restaurant/create:
+            post:
+                tags:
+                    - Restaurant
+                summary: Create a new restaurant
+                description: Create a new restaurant
+                security:
+                    - BasicAuth: [username:password]
+                requestBody:
+                    content:
+                        raw:
+                            schema:
+                                type: object
+                                properties:
+                                    name:
+                                        type: string
+                responses:
+                    "200":
+                        description: OK
+    /menu/create:
+            post:
+                tags:
+                    - Menu
+                summary: Create a new menu
+                description: Create a new menu
+                security:
+                    - BasicAuth: [username:password]
+                requestBody:
+                    content:
+                        raw:
+                            schema:
+                                type: object
+                                properties:
+                                    name:
+                                        type: string
+                                    idRestaurant:
+                                        type: string
+                responses:
+                    "200":
+                        description: OK
+    /menu/addItem:
+            post:
+                tags:
+                    - Menu
+                summary: Add a new item to a menu
+                description: Add a new item to a menu
+                security:
+                    - BasicAuth: [username:password]
+                requestBody:
+                    content:
+                        raw:
+                            schema:
+                                type: object
+                                properties:
+                                    name:
+                                        type: string
+                                    price:
+                                        type: number
+                                    idMenu:
+                                        type: string
+                responses:
+                    "200":
+                        description: OK
