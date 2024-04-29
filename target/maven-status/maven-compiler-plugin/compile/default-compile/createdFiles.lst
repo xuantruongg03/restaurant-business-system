@@ -8,6 +8,7 @@ restaurant_business_system\db\account\Account.class
 restaurant_business_system\db\account\AccountDAO.class
 restaurant_business_system\api\MenuAPI.class
 restaurant_business_system\RestaurantBusinessSystemConfiguration.class
+restaurant_business_system\db\menu\MenuDTO.class
 restaurant_business_system\db\food\FoodDTO.class
 restaurant_business_system\db\food\FoodDAO.class
 restaurant_business_system\db\menu\Menu.class

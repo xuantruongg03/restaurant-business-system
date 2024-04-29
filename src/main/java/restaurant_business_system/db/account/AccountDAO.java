@@ -27,13 +27,21 @@ public class AccountDAO {
      */
     @SqlUpdate("INSERT INTO accounts (id_account, username, password, role) VALUES (:idAccount, :username, :password, :role)")
     public Account create(Account account) {
-        jdbi.useHandle(handle -> handle.createUpdate(
+        jdbi.useHandle(handle -> {
+            //Check if the account already exists => throw exception 409
+            Account existingAccount = findByUsernameAndPassword(account.getUsername(), account.getPassword());
+            if (existingAccount != null) {
+                throw new RuntimeException("Account already exists");
+            }
+
+            handle.createUpdate(
                 "INSERT INTO accounts (id_account, username, password, role) VALUES (:idAccount, :username, :password, :role)")
                 .bind("idAccount", account.getId())
                 .bind("username", account.getUsername())
                 .bind("password", account.getPassword())
                 .bind("role", account.getRole())
-                .execute());
+                .execute();
+        });
         return account;
     }
 

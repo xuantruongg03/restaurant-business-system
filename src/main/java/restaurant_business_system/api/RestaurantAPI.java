@@ -1,5 +1,8 @@
 package restaurant_business_system.api;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.dropwizard.auth.Auth;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -11,8 +14,6 @@ import jakarta.ws.rs.core.Response;
 import restaurant_business_system.core.User;
 import restaurant_business_system.db.restaurant.Restaurant;
 import restaurant_business_system.db.restaurant.RestaurantDAO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 @Path("/restaurant")
@@ -26,12 +27,12 @@ public class RestaurantAPI {
     }
 
     /**
-        * Adds a new restaurant to the system.
-        *
-        * @param u The authenticated user.
-        * @param r The restaurant to be added.
-        * @return A response indicating the success or failure of the operation.
-        */
+     * Adds a new restaurant to the system.
+     *
+     * @param u The authenticated user.
+     * @param r The restaurant to be added.
+     * @return A response indicating the success or failure of the operation.
+     */
     @POST
     @Path("/create")
     @Produces(MediaType.APPLICATION_JSON)
@@ -45,6 +46,12 @@ public class RestaurantAPI {
         return Response.status(Response.Status.UNAUTHORIZED).build();
     }
 
+    /**
+     * Retrieves the restaurant associated with the authenticated user.
+     *
+     * @param u The authenticated user.
+     * @return A response containing the restaurant information.
+     */
     @GET
     @Path("/get")
     public Response getRestaurant(@Auth User u) {
@@ -54,6 +61,13 @@ public class RestaurantAPI {
         return Response.status(Response.Status.UNAUTHORIZED).build();
     }
 
+    /**
+     * Updates the name of a restaurant.
+     *
+     * @param u The authenticated user.
+     * @param r The restaurant with the updated name.
+     * @return A response indicating the success or failure of the operation.
+     */
     @POST
     @Path("/update-name")
     public Response updateNameRestaurant(@Auth User u, Restaurant r) {
@@ -67,12 +81,18 @@ public class RestaurantAPI {
         return Response.status(Response.Status.UNAUTHORIZED).build();
     }
 
-    //Chưa xóa được
-    @POST
+    /**
+     * Deletes a restaurant.
+     *
+     * @param u The authenticated user.
+     * @param r The restaurant to be deleted.
+     * @return A response indicating the success or failure of the operation.
+     */
+    @GET
     @Path("/delete")
-    public Response deleteRestaurant(@Auth User u, Restaurant r){
+    public Response deleteRestaurant(@Auth User u, @QueryParam("idRestaurant") String idRestaurant){
         if (u != null) {
-            dao.delete(u.getId(), r.getIdRestaurant());
+            dao.delete(u.getId(), idRestaurant);
             return Response.ok("OK").build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).build();

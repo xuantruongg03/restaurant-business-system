@@ -28,7 +28,7 @@ public class FoodApi {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
         Food f = new Food(food.getIdMenu(), food.getName(), food.getPrice(), food.getImage());
-        if (dao.create(f) != null) {
+        if (dao.create(f, u.getId()) != null) {
             return Response.ok("OK").build();
         } else {
             return Response.serverError().build();
@@ -39,5 +39,33 @@ public class FoodApi {
     @Path("/get")
     public Response getFoods(@QueryParam("idMenu") String idMenu){
         return Response.ok(dao.findByMenu(idMenu)).build();
+    }
+
+    @POST
+    @Path("/upadte")
+    public Response updateFood(@Auth User u, Food food) {
+        if(food.getIdFood() == null || food.getName() == null || food.getImage() == null) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        Food f = new Food(food.getIdFood(), food.getIdMenu(), food.getName(), food.getPrice(), food.getImage());
+        if (dao.update(f, u.getId()) != null) {
+            return Response.ok("OK").build();
+        } else {
+            return Response.serverError().build();
+        }
+    }
+
+    @GET
+    @Path("/delete")
+    public Response deleteFood(@Auth User u, @QueryParam("idFood") String idFood) {
+        dao.delete(idFood, u.getId());
+        return Response.ok("OK").build();
+    }
+
+    @GET
+    @Path("/delete-all")
+    public Response deleteAllFoods(@Auth User u, @QueryParam("idMenu") String idMenu) {
+        dao.deleteAll(idMenu, u.getId());
+        return Response.ok("OK").build();
     }
 }

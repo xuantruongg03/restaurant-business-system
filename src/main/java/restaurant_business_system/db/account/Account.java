@@ -28,6 +28,8 @@ public class Account {
         idAccount = id;
     }
 
+    public Account() {}
+
     public Account(String id) {
         idAccount = id;
     }

@@ -1,7 +1,5 @@
 package restaurant_business_system.api;
 
-import io.dropwizard.hibernate.UnitOfWork;
-import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -29,11 +27,10 @@ public class AccountAPI {
      */
     @POST
     @Path("/register")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @UnitOfWork
+    @Produces(MediaType.APPLICATION_JSON)
     public Response register(Account account) {
-        Account createdAccount = dao.create(account);
-        if(createdAccount != null) {
+        Account a = new Account(account.getUsername(), account.getPassword());
+        if(dao.create(a) != null) {
             return Response.ok("OK").type(MediaType.APPLICATION_JSON).build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST).build();

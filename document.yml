@@ -103,7 +103,7 @@ paths:
                     "200":
                         description: OK
     /restaurant/delete:
-            post:
+            get:
                 tags:
                     - Restaurant
                 description: Delete a restaurant
@@ -116,14 +116,11 @@ paths:
                     schema:
                         type: string
                     description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
-                requestBody:
-                    content:
-                        raw:
-                            schema:
-                                type: object
-                                properties:
-                                    idRestaurant:
-                                        type: string
+                  - name: idRestaurant
+                    in: query
+                    required: true
+                    schema:
+                        type: string
                 responses:
                     "200":
                         description: OK
@@ -164,6 +161,57 @@ paths:
                       in: query
                       required: true
                       schema:
+                        type: string
+                responses:
+                    "200":
+                        description: OK
+    /menu/update-name:
+            post:
+                tags:
+                    - Menu
+                description: Update name a menu
+                security:
+                    - BasicAuth: []
+                parameters:
+                  - name: Authorization
+                    in: header
+                    required: true
+                    schema:
+                        type: string
+                    description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
+                requestBody:
+                    content:
+                        raw:
+                            schema:
+                                type: object
+                                properties:
+                                    idMenu:
+                                        type: string
+                                    name:
+                                        type: string
+                                    idRestaurant:
+                                        type: string
+                responses:
+                    "200":
+                        description: OK
+    /menu/delete:
+            get:
+                tags:
+                    - Menu
+                description: Delete a menu
+                security:
+                    - BasicAuth: []
+                parameters:
+                  - name: Authorization
+                    in: header
+                    required: true
+                    schema:
+                        type: string
+                    description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
+                  - name: idMenu
+                    in: query
+                    required: true
+                    schema:
                         type: string
                 responses:
                     "200":
@@ -209,6 +257,81 @@ paths:
                       in: query
                       required: true
                       schema:
+                        type: string
+                responses:
+                    "200":
+                        description: OK
+    /food/update:
+            post:
+                tags:
+                    - Food
+                description: Update a food
+                security:
+                    - BasicAuth: []
+                parameters:
+                  - name: Authorization
+                    in: header
+                    required: true
+                    schema:
+                        type: string
+                    description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
+                requestBody:
+                    content:
+                        raw:
+                            schema:
+                                type: object
+                                properties:
+                                    idFood:
+                                        type: string
+                                    name:
+                                        type: string
+                                    price:
+                                        type: number
+                                    image:
+                                        type: string
+                responses:
+                    "200":
+                        description: OK
+    /food/delete:
+            get:
+                tags:
+                    - Food
+                description: Delete a food
+                security:
+                    - BasicAuth: []
+                parameters:
+                  - name: Authorization
+                    in: header
+                    required: true
+                    schema:
+                        type: string
+                    description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
+                  - name: idFood
+                    in: query
+                    required: true
+                    schema:
+                        type: string
+                responses:
+                    "200":
+                        description: OK
+    /food/delete-all:
+            get:
+                tags:
+                    - Food
+                description: Delete all foods from a menu
+                security:
+                    - BasicAuth: []
+                parameters:
+                  - name: Authorization
+                    in: header
+                    required: true
+                    schema:
+                        type: string
+                    description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
+                  - name: idMenu
+                    in: query
+                    required: true
+                    schema:
                         type: string
                 responses:
                     "200":
