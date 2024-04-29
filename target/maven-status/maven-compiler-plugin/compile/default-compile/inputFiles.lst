@@ -3,11 +3,10 @@ D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\ap
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\MenuAPI.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\RestaurantAPI.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\auth\BasicAuthenticator.java
-D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\auth\UserAuthenticator.java
+D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\auth\UserAuthorizer.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\core\User.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\account\Account.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\account\AccountDAO.java
-D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\CheckID.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\DBManager.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\food\Food.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\food\FoodDAO.java
@@ -16,6 +15,7 @@ D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\menu\MenuDAO.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\restaurant\Restaurant.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\restaurant\RestaurantDAO.java
+D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\restaurant\RestaurantDTO.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\resources\CorsFilter.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\resources\GenerateID.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\restaurant_business_systemApplication.java

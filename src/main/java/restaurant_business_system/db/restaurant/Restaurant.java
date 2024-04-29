@@ -25,9 +25,8 @@ public class Restaurant {
         this.status = "active";
         this.idAccount = idAccount;
     }
-
     // Getters and Setters
-    public String getId() {
+    public String getIdRestaurant() {
         return idRestaurant;
     }
 

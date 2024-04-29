@@ -19,7 +19,6 @@ paths:
         post:
             tags:
                 - Account
-            summary: Register a new account
             description: Register a new account
             requestBody:
                 content:
@@ -38,10 +37,16 @@ paths:
             post:
                 tags:
                     - Restaurant
-                summary: Create a new restaurant
                 description: Create a new restaurant
                 security:
-                    - BasicAuth: [username:password]
+                    - BasicAuth: []
+                parameters:
+                  - name: Authorization
+                    in: header
+                    required: true
+                    schema:
+                        type: string
+                    description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
                 requestBody:
                     content:
                         raw:
@@ -53,14 +58,89 @@ paths:
                 responses:
                     "200":
                         description: OK
+    /restaurant/get:
+            get:
+                tags:
+                    - Restaurant
+                description: Get all restaurants for a user
+                security:
+                    - BasicAuth: []
+                parameters:
+                  - name: Authorization
+                    in: header
+                    required: true
+                    schema:
+                        type: string
+                    description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
+                responses:
+                    "200":
+                        description: OK
+    /restaurant/update-name:
+            post:
+                tags:
+                    - Restaurant
+                description: Update name a restaurant
+                security:
+                    - BasicAuth: []
+                parameters:
+                  - name: Authorization
+                    in: header
+                    required: true
+                    schema:
+                        type: string
+                    description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
+                requestBody:
+                    content:
+                        raw:
+                            schema:
+                                type: object
+                                properties:
+                                    idRestaurant:
+                                        type: string
+                                    name:
+                                        type: string
+                responses:
+                    "200":
+                        description: OK
+    /restaurant/delete:
+            post:
+                tags:
+                    - Restaurant
+                description: Delete a restaurant
+                security:
+                    - BasicAuth: []
+                parameters:
+                  - name: Authorization
+                    in: header
+                    required: true
+                    schema:
+                        type: string
+                    description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
+                requestBody:
+                    content:
+                        raw:
+                            schema:
+                                type: object
+                                properties:
+                                    idRestaurant:
+                                        type: string
+                responses:
+                    "200":
+                        description: OK
     /menu/create:
             post:
                 tags:
                     - Menu
-                summary: Create a new menu
                 description: Create a new menu
                 security:
-                    - BasicAuth: [username:password]
+                    - BasicAuth: []
+                parameters:
+                  - name: Authorization
+                    in: header
+                    required: true
+                    schema:
+                        type: string
+                    description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
                 requestBody:
                     content:
                         raw:
@@ -78,7 +158,6 @@ paths:
             get:
                 tags:
                     - Menu
-                summary: Get all menus from a restaurant
                 description: Get all menus from a restaurant
                 parameters:
                     - name: idRestaurant
@@ -93,10 +172,16 @@ paths:
             post:
                 tags:
                     - Food
-                summary: Create a new food to a menu
                 description: Create a new food to a menu
                 security:
-                    - BasicAuth: [abc:123]
+                    - BasicAuth: []
+                parameters:
+                  - name: Authorization
+                    in: header
+                    required: true
+                    schema:
+                        type: string
+                    description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
                 requestBody:
                     content:
                         raw:
@@ -118,7 +203,6 @@ paths:
             get:
                 tags:
                     - Food
-                summary: Get all foods from a menu
                 description: Get all foods from a menu
                 parameters:
                     - name: idMenu

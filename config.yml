@@ -3,6 +3,11 @@ logging:
   level: INFO
   loggers:
     restaurant_business_system: DEBUG
+  appenders:
+    - type: console
+    - type: file
+      currentLogFilename: ./logs/app.log
+      archivedLogFilenamePattern: ./logs/app-%d.log.gz
 database:
   driverClass: com.mysql.cj.jdbc.Driver
   user: root
