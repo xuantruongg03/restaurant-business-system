@@ -39,18 +39,18 @@ CREATE TABLE `accounts` (
 
 LOCK TABLES `accounts` WRITE;
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES ('P3B2H66I1M','abc','123','user','2024-04-28 13:58:09','2024-04-28 13:58:09');
+INSERT INTO `accounts` VALUES ('P3B2H66I1M','abc','123','user','2024-04-28 13:58:09','2024-04-28 13:58:09'),('VQ6WABOR10','abcd','123','user','2024-04-29 14:08:13','2024-04-29 14:08:13');
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `bill`
+-- Table structure for table `bills`
 --
 
-DROP TABLE IF EXISTS `bill`;
+DROP TABLE IF EXISTS `bills`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `bill` (
+CREATE TABLE `bills` (
   `id_bill` varchar(10) NOT NULL,
   `id_table` varchar(10) NOT NULL,
   `status` varchar(255) NOT NULL,
@@ -58,17 +58,17 @@ CREATE TABLE `bill` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_bill`),
   KEY `id_table` (`id_table`),
-  CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`id_table`) REFERENCES `tables` (`id_table`)
+  CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`id_table`) REFERENCES `tables` (`id_table`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `bill`
+-- Dumping data for table `bills`
 --
 
-LOCK TABLES `bill` WRITE;
-/*!40000 ALTER TABLE `bill` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bill` ENABLE KEYS */;
+LOCK TABLES `bills` WRITE;
+/*!40000 ALTER TABLE `bills` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bills` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -98,6 +98,7 @@ CREATE TABLE `foods` (
 
 LOCK TABLES `foods` WRITE;
 /*!40000 ALTER TABLE `foods` DISABLE KEYS */;
+INSERT INTO `foods` VALUES ('6DY7NYO28Y','T2CCWHNW87','Đùi gà','string',10000,'2024-04-29 15:38:02','2024-04-29 15:38:02'),('OIV0TS6836','T2CCWHNW87','Gà rán','https://th.bing.com/th/id/OIP.YvFJI3eIlwtrwmQo0wI-wgHaEK?w=311&h=180&c=7&r=0&o=5&pid=1.7',160000,'2024-04-29 15:28:21','2024-04-29 15:28:21');
 /*!40000 ALTER TABLE `foods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,6 +127,7 @@ CREATE TABLE `menus` (
 
 LOCK TABLES `menus` WRITE;
 /*!40000 ALTER TABLE `menus` DISABLE KEYS */;
+INSERT INTO `menus` VALUES ('T2CCWHNW87','0UDUVYE7SM','D','2024-04-29 14:31:49','2024-04-29 14:31:49');
 /*!40000 ALTER TABLE `menus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +149,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`id_order`),
   KEY `id_bill` (`id_bill`),
   KEY `id_food` (`id_food`),
-  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`id_bill`) REFERENCES `bill` (`id_bill`),
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`id_bill`) REFERENCES `bills` (`id_bill`),
   CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`id_food`) REFERENCES `foods` (`id_food`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -187,7 +189,7 @@ CREATE TABLE `restaurants` (
 
 LOCK TABLES `restaurants` WRITE;
 /*!40000 ALTER TABLE `restaurants` DISABLE KEYS */;
-INSERT INTO `restaurants` VALUES ('DH7W7OZK8W','P3B2H66I1M','restaurent a','active','2024-04-28 14:27:03','2024-04-28 14:27:03');
+INSERT INTO `restaurants` VALUES ('0UDUVYE7SM','P3B2H66I1M','a','active','2024-04-29 10:46:37','2024-04-29 10:46:37'),('WSJ370SFR9','P3B2H66I1M','b','active','2024-04-29 10:48:28','2024-04-29 10:48:28');
 /*!40000 ALTER TABLE `restaurants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,6 +218,7 @@ CREATE TABLE `tables` (
 
 LOCK TABLES `tables` WRITE;
 /*!40000 ALTER TABLE `tables` DISABLE KEYS */;
+INSERT INTO `tables` VALUES ('98AFF73GPT','0UDUVYE7SM','Available','2024-04-30 09:40:10','2024-04-30 09:40:10');
 /*!40000 ALTER TABLE `tables` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -228,4 +231,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-28 14:45:53
+-- Dump completed on 2024-04-30 11:14:45

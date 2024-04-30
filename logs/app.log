@@ -599,3 +599,572 @@ INFO  [2024-04-30 02:40:36,411] org.eclipse.jetty.server.AbstractConnector: Stop
 INFO  [2024-04-30 02:40:36,415] org.eclipse.jetty.server.AbstractConnector: Stopped admin@4b6d92e{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
 INFO  [2024-04-30 02:40:36,417] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@3a9b41a0{/,null,STOPPED}
 INFO  [2024-04-30 02:40:36,424] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@782fd504{/,null,STOPPED}
+INFO  [2024-04-30 05:21:19,465] io.dropwizard.core.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2024-04-30 05:21:19,468] io.dropwizard.core.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2024-04-30 05:21:19,812] io.dropwizard.core.server.ServerFactory: Starting restaurant_business_system
+================================================================================
+
+                              restaurant_business_system
+
+================================================================================
+
+INFO  [2024-04-30 05:21:19,912] org.eclipse.jetty.setuid.SetUIDListener: Opened application@6726cc69{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:21:19,913] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@4b6d92e{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:21:19,915] org.eclipse.jetty.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 21.0.2+13-LTS-58
+INFO  [2024-04-30 05:21:20,943] io.dropwizard.jersey.DropwizardResourceConfig: The following paths were found for the configured resources:
+
+    POST    /account/login (restaurant_business_system.api.AccountAPI)
+    POST    /account/register (restaurant_business_system.api.AccountAPI)
+    POST    /food/create (restaurant_business_system.api.FoodApi)
+    GET     /food/delete (restaurant_business_system.api.FoodApi)
+    GET     /food/delete-all (restaurant_business_system.api.FoodApi)
+    GET     /food/get (restaurant_business_system.api.FoodApi)
+    POST    /food/upadte (restaurant_business_system.api.FoodApi)
+    POST    /menu/create (restaurant_business_system.api.MenuAPI)
+    GET     /menu/delete (restaurant_business_system.api.MenuAPI)
+    GET     /menu/get (restaurant_business_system.api.MenuAPI)
+    POST    /menu/update-name (restaurant_business_system.api.MenuAPI)
+    POST    /restaurant/create (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/delete (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/get (restaurant_business_system.api.RestaurantAPI)
+    POST    /restaurant/update-name (restaurant_business_system.api.RestaurantAPI)
+    POST    /table/create (restaurant_business_system.api.TableAPI)
+    GET     /table/delete (restaurant_business_system.api.TableAPI)
+    GET     /table/get (restaurant_business_system.api.TableAPI)
+
+INFO  [2024-04-30 05:21:20,945] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@782fd504{/,null,AVAILABLE}
+INFO  [2024-04-30 05:21:20,948] io.dropwizard.core.setup.AdminEnvironment: tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+INFO  [2024-04-30 05:21:20,948] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@3a9b41a0{/,null,AVAILABLE}
+INFO  [2024-04-30 05:21:20,960] org.eclipse.jetty.server.AbstractConnector: Started application@6726cc69{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:21:20,962] org.eclipse.jetty.server.AbstractConnector: Started admin@4b6d92e{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:21:20,965] org.eclipse.jetty.server.Server: Started Server@252a8aae{STARTING}[11.0.20,sto=30000] @2902ms
+INFO  [2024-04-30 05:23:40,544] org.eclipse.jetty.server.Server: Stopped Server@252a8aae{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:23:40,545] org.eclipse.jetty.server.Server: Shutdown Server@252a8aae{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:23:40,549] org.eclipse.jetty.server.AbstractConnector: Stopped application@6726cc69{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:23:40,552] org.eclipse.jetty.server.AbstractConnector: Stopped admin@4b6d92e{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:23:40,553] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@3a9b41a0{/,null,STOPPED}
+INFO  [2024-04-30 05:23:40,564] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@782fd504{/,null,STOPPED}
+INFO  [2024-04-30 05:23:56,537] io.dropwizard.core.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2024-04-30 05:23:56,539] io.dropwizard.core.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2024-04-30 05:23:56,787] io.dropwizard.core.server.ServerFactory: Starting restaurant_business_system
+================================================================================
+
+                              restaurant_business_system
+
+================================================================================
+
+INFO  [2024-04-30 05:23:56,874] org.eclipse.jetty.setuid.SetUIDListener: Opened application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:23:56,874] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:23:56,876] org.eclipse.jetty.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 21.0.2+13-LTS-58
+INFO  [2024-04-30 05:23:57,805] io.dropwizard.jersey.DropwizardResourceConfig: The following paths were found for the configured resources:
+
+    POST    /account/login (restaurant_business_system.api.AccountAPI)
+    POST    /account/register (restaurant_business_system.api.AccountAPI)
+    POST    /bills/checkOrCreate (restaurant_business_system.api.BillAPI)
+    GET     /bills/get (restaurant_business_system.api.BillAPI)
+    POST    /food/create (restaurant_business_system.api.FoodApi)
+    GET     /food/delete (restaurant_business_system.api.FoodApi)
+    GET     /food/delete-all (restaurant_business_system.api.FoodApi)
+    GET     /food/get (restaurant_business_system.api.FoodApi)
+    POST    /food/upadte (restaurant_business_system.api.FoodApi)
+    POST    /menu/create (restaurant_business_system.api.MenuAPI)
+    GET     /menu/delete (restaurant_business_system.api.MenuAPI)
+    GET     /menu/get (restaurant_business_system.api.MenuAPI)
+    POST    /menu/update-name (restaurant_business_system.api.MenuAPI)
+    POST    /restaurant/create (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/delete (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/get (restaurant_business_system.api.RestaurantAPI)
+    POST    /restaurant/update-name (restaurant_business_system.api.RestaurantAPI)
+    POST    /table/create (restaurant_business_system.api.TableAPI)
+    GET     /table/delete (restaurant_business_system.api.TableAPI)
+    GET     /table/get (restaurant_business_system.api.TableAPI)
+
+INFO  [2024-04-30 05:23:57,807] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@2aa5bd48{/,null,AVAILABLE}
+INFO  [2024-04-30 05:23:57,810] io.dropwizard.core.setup.AdminEnvironment: tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+INFO  [2024-04-30 05:23:57,810] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@230232b0{/,null,AVAILABLE}
+INFO  [2024-04-30 05:23:57,828] org.eclipse.jetty.server.AbstractConnector: Started application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:23:57,831] org.eclipse.jetty.server.AbstractConnector: Started admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:23:57,833] org.eclipse.jetty.server.Server: Started Server@6caf7803{STARTING}[11.0.20,sto=30000] @2745ms
+ERROR [2024-04-30 05:24:11,899] io.dropwizard.jersey.errors.LoggingExceptionMapper: Error handling a request: 55eda857215accf0
+! java.sql.SQLSyntaxErrorException: Table 'restaurant_business_system.bill' doesn't exist
+! at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+! at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+! at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+! at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:955)
+! at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:372)
+! at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+! at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+! at org.apache.tomcat.jdbc.pool.StatementFacade$StatementProxy.invoke(StatementFacade.java:118)
+! at jdk.proxy2/jdk.proxy2.$Proxy65.execute(Unknown Source)
+! at org.jdbi.v3.core.statement.SqlLoggerUtil.wrap(SqlLoggerUtil.java:32)
+! at org.jdbi.v3.core.statement.SqlStatement.internalExecute(SqlStatement.java:1813)
+! ... 75 common frames omitted
+! Causing: org.jdbi.v3.core.statement.UnableToExecuteStatementException: java.sql.SQLSyntaxErrorException: Table 'restaurant_business_system.bill' doesn't exist [statement:"INSERT INTO bill (idBill, idTable, status) VALUES (:idBill, :idTable, :status)", arguments:{positional:{}, named:{idTable:98AFF73GPT,idBill:2VWXWVG8ZZ,status:Open}, finder:[]}]
+! at org.jdbi.v3.core.statement.SqlStatement.internalExecute(SqlStatement.java:1815)
+! at org.jdbi.v3.core.result.ResultProducers.lambda$returningUpdateCount$0(ResultProducers.java:49)
+! at org.jdbi.v3.core.statement.Update.execute(Update.java:69)
+! at org.jdbi.v3.core.statement.Update.execute(Update.java:57)
+! at restaurant_business_system.db.bill.BillDAO.lambda$create$0(BillDAO.java:38)
+! at org.jdbi.v3.core.HandleConsumer.lambda$asCallback$0(HandleConsumer.java:32)
+! at org.jdbi.v3.core.Jdbi.withHandle(Jdbi.java:425)
+! at org.jdbi.v3.core.Jdbi.useHandle(Jdbi.java:441)
+! at restaurant_business_system.db.bill.BillDAO.create(BillDAO.java:33)
+! at restaurant_business_system.api.BillAPI.checkOrCreate(BillAPI.java:42)
+! at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+! at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+! at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory.lambda$static$0(ResourceMethodInvocationHandlerFactory.java:52)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:146)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:189)
+! at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$ResponseOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:176)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:93)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:478)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:400)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:81)
+! at org.glassfish.jersey.server.ServerRuntime$1.run(ServerRuntime.java:256)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:248)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:244)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:292)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:274)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:244)
+! at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:265)
+! at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:235)
+! at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:684)
+! at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:394)
+! at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:346)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:358)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:311)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:205)
+! at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:764)
+! at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1665)
+! at io.dropwizard.servlets.ThreadNameFilter.doFilter(ThreadNameFilter.java:36)
+! at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+! at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.handle(AllowedMethodsFilter.java:46)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.doFilter(AllowedMethodsFilter.java:40)
+! at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+! at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+! at org.eclipse.jetty.servlets.CrossOriginFilter.handle(CrossOriginFilter.java:314)
+! at org.eclipse.jetty.servlets.CrossOriginFilter.doFilter(CrossOriginFilter.java:267)
+! at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+! at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+! at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:527)
+! at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+! at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+! at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+! at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+! at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+! at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+! at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+! at io.dropwizard.metrics.jetty11.InstrumentedHandler.handle(InstrumentedHandler.java:313)
+! at io.dropwizard.jetty.RoutingHandler.handle(RoutingHandler.java:52)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+! at org.eclipse.jetty.server.handler.gzip.GzipHandler.handle(GzipHandler.java:822)
+! at io.dropwizard.jetty.ZipExceptionHandlingGzipHandler.handle(ZipExceptionHandlingGzipHandler.java:26)
+! at org.eclipse.jetty.server.handler.RequestLogHandler.handle(RequestLogHandler.java:46)
+! at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:173)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+! at org.eclipse.jetty.server.Server.handle(Server.java:563)
+! at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+! at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+! at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+! at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+! at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+! at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+! at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+! at java.base/java.lang.Thread.run(Thread.java:1583)
+INFO  [2024-04-30 05:25:30,042] org.eclipse.jetty.server.Server: Stopped Server@6caf7803{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:25:30,042] org.eclipse.jetty.server.Server: Shutdown Server@6caf7803{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:25:30,057] org.eclipse.jetty.server.AbstractConnector: Stopped application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:25:30,059] org.eclipse.jetty.server.AbstractConnector: Stopped admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:25:30,062] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@230232b0{/,null,STOPPED}
+INFO  [2024-04-30 05:25:30,075] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@2aa5bd48{/,null,STOPPED}
+INFO  [2024-04-30 05:25:46,963] io.dropwizard.core.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2024-04-30 05:25:46,965] io.dropwizard.core.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2024-04-30 05:25:47,222] io.dropwizard.core.server.ServerFactory: Starting restaurant_business_system
+================================================================================
+
+                              restaurant_business_system
+
+================================================================================
+
+INFO  [2024-04-30 05:25:47,316] org.eclipse.jetty.setuid.SetUIDListener: Opened application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:25:47,316] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:25:47,318] org.eclipse.jetty.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 21.0.2+13-LTS-58
+INFO  [2024-04-30 05:25:48,273] io.dropwizard.jersey.DropwizardResourceConfig: The following paths were found for the configured resources:
+
+    POST    /account/login (restaurant_business_system.api.AccountAPI)
+    POST    /account/register (restaurant_business_system.api.AccountAPI)
+    POST    /bills/checkOrCreate (restaurant_business_system.api.BillAPI)
+    GET     /bills/get (restaurant_business_system.api.BillAPI)
+    POST    /food/create (restaurant_business_system.api.FoodApi)
+    GET     /food/delete (restaurant_business_system.api.FoodApi)
+    GET     /food/delete-all (restaurant_business_system.api.FoodApi)
+    GET     /food/get (restaurant_business_system.api.FoodApi)
+    POST    /food/upadte (restaurant_business_system.api.FoodApi)
+    POST    /menu/create (restaurant_business_system.api.MenuAPI)
+    GET     /menu/delete (restaurant_business_system.api.MenuAPI)
+    GET     /menu/get (restaurant_business_system.api.MenuAPI)
+    POST    /menu/update-name (restaurant_business_system.api.MenuAPI)
+    POST    /restaurant/create (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/delete (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/get (restaurant_business_system.api.RestaurantAPI)
+    POST    /restaurant/update-name (restaurant_business_system.api.RestaurantAPI)
+    POST    /table/create (restaurant_business_system.api.TableAPI)
+    GET     /table/delete (restaurant_business_system.api.TableAPI)
+    GET     /table/get (restaurant_business_system.api.TableAPI)
+
+INFO  [2024-04-30 05:25:48,275] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@2aa5bd48{/,null,AVAILABLE}
+INFO  [2024-04-30 05:25:48,278] io.dropwizard.core.setup.AdminEnvironment: tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+INFO  [2024-04-30 05:25:48,279] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@230232b0{/,null,AVAILABLE}
+INFO  [2024-04-30 05:25:48,296] org.eclipse.jetty.server.AbstractConnector: Started application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:25:48,301] org.eclipse.jetty.server.AbstractConnector: Started admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:25:48,303] org.eclipse.jetty.server.Server: Started Server@6caf7803{STARTING}[11.0.20,sto=30000] @2951ms
+INFO  [2024-04-30 05:27:04,001] org.eclipse.jetty.server.Server: Stopped Server@6caf7803{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:27:04,001] org.eclipse.jetty.server.Server: Shutdown Server@6caf7803{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:27:04,010] org.eclipse.jetty.server.AbstractConnector: Stopped application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:27:04,012] org.eclipse.jetty.server.AbstractConnector: Stopped admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:27:04,015] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@230232b0{/,null,STOPPED}
+INFO  [2024-04-30 05:27:04,023] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@2aa5bd48{/,null,STOPPED}
+INFO  [2024-04-30 05:27:20,423] io.dropwizard.core.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2024-04-30 05:27:20,425] io.dropwizard.core.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2024-04-30 05:27:20,716] io.dropwizard.core.server.ServerFactory: Starting restaurant_business_system
+================================================================================
+
+                              restaurant_business_system
+
+================================================================================
+
+INFO  [2024-04-30 05:27:20,811] org.eclipse.jetty.setuid.SetUIDListener: Opened application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:27:20,811] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:27:20,812] org.eclipse.jetty.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 21.0.2+13-LTS-58
+INFO  [2024-04-30 05:27:21,815] io.dropwizard.jersey.DropwizardResourceConfig: The following paths were found for the configured resources:
+
+    POST    /account/login (restaurant_business_system.api.AccountAPI)
+    POST    /account/register (restaurant_business_system.api.AccountAPI)
+    POST    /bills/checkOrCreate (restaurant_business_system.api.BillAPI)
+    GET     /bills/get (restaurant_business_system.api.BillAPI)
+    POST    /food/create (restaurant_business_system.api.FoodApi)
+    GET     /food/delete (restaurant_business_system.api.FoodApi)
+    GET     /food/delete-all (restaurant_business_system.api.FoodApi)
+    GET     /food/get (restaurant_business_system.api.FoodApi)
+    POST    /food/upadte (restaurant_business_system.api.FoodApi)
+    POST    /menu/create (restaurant_business_system.api.MenuAPI)
+    GET     /menu/delete (restaurant_business_system.api.MenuAPI)
+    GET     /menu/get (restaurant_business_system.api.MenuAPI)
+    POST    /menu/update-name (restaurant_business_system.api.MenuAPI)
+    POST    /restaurant/create (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/delete (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/get (restaurant_business_system.api.RestaurantAPI)
+    POST    /restaurant/update-name (restaurant_business_system.api.RestaurantAPI)
+    POST    /table/create (restaurant_business_system.api.TableAPI)
+    GET     /table/delete (restaurant_business_system.api.TableAPI)
+    GET     /table/get (restaurant_business_system.api.TableAPI)
+
+INFO  [2024-04-30 05:27:21,817] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@2aa5bd48{/,null,AVAILABLE}
+INFO  [2024-04-30 05:27:21,820] io.dropwizard.core.setup.AdminEnvironment: tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+INFO  [2024-04-30 05:27:21,821] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@230232b0{/,null,AVAILABLE}
+INFO  [2024-04-30 05:27:21,839] org.eclipse.jetty.server.AbstractConnector: Started application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:27:21,843] org.eclipse.jetty.server.AbstractConnector: Started admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:27:21,844] org.eclipse.jetty.server.Server: Started Server@6caf7803{STARTING}[11.0.20,sto=30000] @2866ms
+INFO  [2024-04-30 05:34:13,536] org.eclipse.jetty.server.Server: Stopped Server@6caf7803{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:34:13,537] org.eclipse.jetty.server.Server: Shutdown Server@6caf7803{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:34:13,544] org.eclipse.jetty.server.AbstractConnector: Stopped application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:34:13,547] org.eclipse.jetty.server.AbstractConnector: Stopped admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:34:13,549] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@230232b0{/,null,STOPPED}
+INFO  [2024-04-30 05:34:13,559] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@2aa5bd48{/,null,STOPPED}
+INFO  [2024-04-30 05:34:30,832] io.dropwizard.core.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2024-04-30 05:34:30,834] io.dropwizard.core.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2024-04-30 05:34:31,161] io.dropwizard.core.server.ServerFactory: Starting restaurant_business_system
+================================================================================
+
+                              restaurant_business_system
+
+================================================================================
+
+INFO  [2024-04-30 05:34:31,263] org.eclipse.jetty.setuid.SetUIDListener: Opened application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:34:31,265] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:34:31,267] org.eclipse.jetty.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 21.0.2+13-LTS-58
+INFO  [2024-04-30 05:34:32,301] io.dropwizard.jersey.DropwizardResourceConfig: The following paths were found for the configured resources:
+
+    POST    /account/login (restaurant_business_system.api.AccountAPI)
+    POST    /account/register (restaurant_business_system.api.AccountAPI)
+    POST    /bills/checkOrCreate (restaurant_business_system.api.BillAPI)
+    GET     /bills/get (restaurant_business_system.api.BillAPI)
+    POST    /food/create (restaurant_business_system.api.FoodApi)
+    GET     /food/delete (restaurant_business_system.api.FoodApi)
+    GET     /food/delete-all (restaurant_business_system.api.FoodApi)
+    GET     /food/get (restaurant_business_system.api.FoodApi)
+    POST    /food/upadte (restaurant_business_system.api.FoodApi)
+    POST    /menu/create (restaurant_business_system.api.MenuAPI)
+    GET     /menu/delete (restaurant_business_system.api.MenuAPI)
+    GET     /menu/get (restaurant_business_system.api.MenuAPI)
+    POST    /menu/update-name (restaurant_business_system.api.MenuAPI)
+    POST    /restaurant/create (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/delete (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/get (restaurant_business_system.api.RestaurantAPI)
+    POST    /restaurant/update-name (restaurant_business_system.api.RestaurantAPI)
+    POST    /table/create (restaurant_business_system.api.TableAPI)
+    GET     /table/delete (restaurant_business_system.api.TableAPI)
+    GET     /table/get (restaurant_business_system.api.TableAPI)
+
+INFO  [2024-04-30 05:34:32,303] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@2aa5bd48{/,null,AVAILABLE}
+INFO  [2024-04-30 05:34:32,308] io.dropwizard.core.setup.AdminEnvironment: tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+INFO  [2024-04-30 05:34:32,309] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@230232b0{/,null,AVAILABLE}
+INFO  [2024-04-30 05:34:32,369] org.eclipse.jetty.server.AbstractConnector: Started application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:34:32,401] org.eclipse.jetty.server.AbstractConnector: Started admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:34:32,402] org.eclipse.jetty.server.Server: Started Server@6caf7803{STARTING}[11.0.20,sto=30000] @3218ms
+INFO  [2024-04-30 05:35:56,723] org.eclipse.jetty.server.Server: Stopped Server@6caf7803{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:35:56,725] org.eclipse.jetty.server.Server: Shutdown Server@6caf7803{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:35:56,731] org.eclipse.jetty.server.AbstractConnector: Stopped application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:35:56,731] org.eclipse.jetty.server.AbstractConnector: Stopped admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:35:56,734] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@230232b0{/,null,STOPPED}
+INFO  [2024-04-30 05:35:56,742] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@2aa5bd48{/,null,STOPPED}
+INFO  [2024-04-30 05:36:35,231] io.dropwizard.core.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2024-04-30 05:36:35,233] io.dropwizard.core.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2024-04-30 05:36:35,529] io.dropwizard.core.server.ServerFactory: Starting restaurant_business_system
+================================================================================
+
+                              restaurant_business_system
+
+================================================================================
+
+INFO  [2024-04-30 05:36:35,617] org.eclipse.jetty.setuid.SetUIDListener: Opened application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:36:35,617] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:36:35,619] org.eclipse.jetty.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 21.0.2+13-LTS-58
+INFO  [2024-04-30 05:36:36,661] io.dropwizard.jersey.DropwizardResourceConfig: The following paths were found for the configured resources:
+
+    POST    /account/login (restaurant_business_system.api.AccountAPI)
+    POST    /account/register (restaurant_business_system.api.AccountAPI)
+    POST    /bills/checkOrCreate (restaurant_business_system.api.BillAPI)
+    GET     /bills/get (restaurant_business_system.api.BillAPI)
+    POST    /food/create (restaurant_business_system.api.FoodApi)
+    GET     /food/delete (restaurant_business_system.api.FoodApi)
+    GET     /food/delete-all (restaurant_business_system.api.FoodApi)
+    GET     /food/get (restaurant_business_system.api.FoodApi)
+    POST    /food/upadte (restaurant_business_system.api.FoodApi)
+    POST    /menu/create (restaurant_business_system.api.MenuAPI)
+    GET     /menu/delete (restaurant_business_system.api.MenuAPI)
+    GET     /menu/get (restaurant_business_system.api.MenuAPI)
+    POST    /menu/update-name (restaurant_business_system.api.MenuAPI)
+    POST    /restaurant/create (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/delete (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/get (restaurant_business_system.api.RestaurantAPI)
+    POST    /restaurant/update-name (restaurant_business_system.api.RestaurantAPI)
+    POST    /table/create (restaurant_business_system.api.TableAPI)
+    GET     /table/delete (restaurant_business_system.api.TableAPI)
+    GET     /table/get (restaurant_business_system.api.TableAPI)
+
+INFO  [2024-04-30 05:36:36,663] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@2aa5bd48{/,null,AVAILABLE}
+INFO  [2024-04-30 05:36:36,666] io.dropwizard.core.setup.AdminEnvironment: tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+INFO  [2024-04-30 05:36:36,667] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@230232b0{/,null,AVAILABLE}
+INFO  [2024-04-30 05:36:36,690] org.eclipse.jetty.server.AbstractConnector: Started application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:36:36,709] org.eclipse.jetty.server.AbstractConnector: Started admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:36:36,711] org.eclipse.jetty.server.Server: Started Server@6caf7803{STARTING}[11.0.20,sto=30000] @2909ms
+ERROR [2024-04-30 05:36:45,089] io.dropwizard.jersey.errors.LoggingExceptionMapper: Error handling a request: 70dbbd98b3e589c0
+! java.lang.NullPointerException: Cannot invoke "java.lang.Integer.intValue()" because the return value of "java.util.Map.get(Object)" is null
+! at restaurant_business_system.db.bill.BillDAO.lambda$getBillDetails$4(BillDAO.java:111)
+! at org.jdbi.v3.core.Jdbi.withHandle(Jdbi.java:425)
+! at restaurant_business_system.db.bill.BillDAO.getBillDetails(BillDAO.java:96)
+! at restaurant_business_system.api.BillAPI.getBill(BillAPI.java:51)
+! at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+! at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+! at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory.lambda$static$0(ResourceMethodInvocationHandlerFactory.java:52)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:146)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:189)
+! at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$ResponseOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:176)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:93)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:478)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:400)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:81)
+! at org.glassfish.jersey.server.ServerRuntime$1.run(ServerRuntime.java:256)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:248)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:244)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:292)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:274)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:244)
+! at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:265)
+! at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:235)
+! at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:684)
+! at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:394)
+! at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:346)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:358)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:311)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:205)
+! at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:764)
+! at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1665)
+! at io.dropwizard.servlets.ThreadNameFilter.doFilter(ThreadNameFilter.java:36)
+! at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+! at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.handle(AllowedMethodsFilter.java:46)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.doFilter(AllowedMethodsFilter.java:40)
+! at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+! at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+! at org.eclipse.jetty.servlets.CrossOriginFilter.handle(CrossOriginFilter.java:314)
+! at org.eclipse.jetty.servlets.CrossOriginFilter.doFilter(CrossOriginFilter.java:267)
+! at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+! at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+! at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:527)
+! at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+! at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+! at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+! at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+! at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+! at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+! at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+! at io.dropwizard.metrics.jetty11.InstrumentedHandler.handle(InstrumentedHandler.java:313)
+! at io.dropwizard.jetty.RoutingHandler.handle(RoutingHandler.java:52)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+! at org.eclipse.jetty.server.handler.gzip.GzipHandler.handle(GzipHandler.java:822)
+! at io.dropwizard.jetty.ZipExceptionHandlingGzipHandler.handle(ZipExceptionHandlingGzipHandler.java:26)
+! at org.eclipse.jetty.server.handler.RequestLogHandler.handle(RequestLogHandler.java:46)
+! at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:173)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+! at org.eclipse.jetty.server.Server.handle(Server.java:563)
+! at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+! at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+! at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+! at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+! at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+! at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+! at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+! at java.base/java.lang.Thread.run(Thread.java:1583)
+INFO  [2024-04-30 05:37:51,639] org.eclipse.jetty.server.Server: Stopped Server@6caf7803{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:37:51,640] org.eclipse.jetty.server.Server: Shutdown Server@6caf7803{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:37:51,653] org.eclipse.jetty.server.AbstractConnector: Stopped application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:37:51,656] org.eclipse.jetty.server.AbstractConnector: Stopped admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:37:51,662] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@230232b0{/,null,STOPPED}
+INFO  [2024-04-30 05:37:51,676] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@2aa5bd48{/,null,STOPPED}
+INFO  [2024-04-30 05:38:07,494] io.dropwizard.core.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2024-04-30 05:38:07,496] io.dropwizard.core.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2024-04-30 05:38:07,799] io.dropwizard.core.server.ServerFactory: Starting restaurant_business_system
+================================================================================
+
+                              restaurant_business_system
+
+================================================================================
+
+INFO  [2024-04-30 05:38:07,868] org.eclipse.jetty.setuid.SetUIDListener: Opened application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:38:07,868] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:38:07,869] org.eclipse.jetty.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 21.0.2+13-LTS-58
+INFO  [2024-04-30 05:38:08,779] io.dropwizard.jersey.DropwizardResourceConfig: The following paths were found for the configured resources:
+
+    POST    /account/login (restaurant_business_system.api.AccountAPI)
+    POST    /account/register (restaurant_business_system.api.AccountAPI)
+    POST    /bills/checkOrCreate (restaurant_business_system.api.BillAPI)
+    GET     /bills/get (restaurant_business_system.api.BillAPI)
+    POST    /food/create (restaurant_business_system.api.FoodApi)
+    GET     /food/delete (restaurant_business_system.api.FoodApi)
+    GET     /food/delete-all (restaurant_business_system.api.FoodApi)
+    GET     /food/get (restaurant_business_system.api.FoodApi)
+    POST    /food/upadte (restaurant_business_system.api.FoodApi)
+    POST    /menu/create (restaurant_business_system.api.MenuAPI)
+    GET     /menu/delete (restaurant_business_system.api.MenuAPI)
+    GET     /menu/get (restaurant_business_system.api.MenuAPI)
+    POST    /menu/update-name (restaurant_business_system.api.MenuAPI)
+    POST    /restaurant/create (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/delete (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/get (restaurant_business_system.api.RestaurantAPI)
+    POST    /restaurant/update-name (restaurant_business_system.api.RestaurantAPI)
+    POST    /table/create (restaurant_business_system.api.TableAPI)
+    GET     /table/delete (restaurant_business_system.api.TableAPI)
+    GET     /table/get (restaurant_business_system.api.TableAPI)
+
+INFO  [2024-04-30 05:38:08,782] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@2aa5bd48{/,null,AVAILABLE}
+INFO  [2024-04-30 05:38:08,786] io.dropwizard.core.setup.AdminEnvironment: tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+INFO  [2024-04-30 05:38:08,787] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@230232b0{/,null,AVAILABLE}
+INFO  [2024-04-30 05:38:08,805] org.eclipse.jetty.server.AbstractConnector: Started application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:38:08,810] org.eclipse.jetty.server.AbstractConnector: Started admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:38:08,814] org.eclipse.jetty.server.Server: Started Server@6caf7803{STARTING}[11.0.20,sto=30000] @3084ms
+INFO  [2024-04-30 05:40:18,090] org.eclipse.jetty.server.Server: Stopped Server@6caf7803{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:40:18,091] org.eclipse.jetty.server.Server: Shutdown Server@6caf7803{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:40:18,100] org.eclipse.jetty.server.AbstractConnector: Stopped application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:40:18,102] org.eclipse.jetty.server.AbstractConnector: Stopped admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:40:18,107] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@230232b0{/,null,STOPPED}
+INFO  [2024-04-30 05:40:18,125] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@2aa5bd48{/,null,STOPPED}
+INFO  [2024-04-30 05:40:34,785] io.dropwizard.core.server.DefaultServerFactory: Registering jersey handler with root path prefix: /
+INFO  [2024-04-30 05:40:34,787] io.dropwizard.core.server.DefaultServerFactory: Registering admin handler with root path prefix: /
+INFO  [2024-04-30 05:40:35,007] io.dropwizard.core.server.ServerFactory: Starting restaurant_business_system
+================================================================================
+
+                              restaurant_business_system
+
+================================================================================
+
+INFO  [2024-04-30 05:40:35,101] org.eclipse.jetty.setuid.SetUIDListener: Opened application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:40:35,101] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:40:35,103] org.eclipse.jetty.server.Server: jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 21.0.2+13-LTS-58
+INFO  [2024-04-30 05:40:36,033] io.dropwizard.jersey.DropwizardResourceConfig: The following paths were found for the configured resources:
+
+    POST    /account/login (restaurant_business_system.api.AccountAPI)
+    POST    /account/register (restaurant_business_system.api.AccountAPI)
+    POST    /bills/checkOrCreate (restaurant_business_system.api.BillAPI)
+    GET     /bills/get (restaurant_business_system.api.BillAPI)
+    POST    /food/create (restaurant_business_system.api.FoodApi)
+    GET     /food/delete (restaurant_business_system.api.FoodApi)
+    GET     /food/delete-all (restaurant_business_system.api.FoodApi)
+    GET     /food/get (restaurant_business_system.api.FoodApi)
+    POST    /food/upadte (restaurant_business_system.api.FoodApi)
+    POST    /menu/create (restaurant_business_system.api.MenuAPI)
+    GET     /menu/delete (restaurant_business_system.api.MenuAPI)
+    GET     /menu/get (restaurant_business_system.api.MenuAPI)
+    POST    /menu/update-name (restaurant_business_system.api.MenuAPI)
+    POST    /restaurant/create (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/delete (restaurant_business_system.api.RestaurantAPI)
+    GET     /restaurant/get (restaurant_business_system.api.RestaurantAPI)
+    POST    /restaurant/update-name (restaurant_business_system.api.RestaurantAPI)
+    POST    /table/create (restaurant_business_system.api.TableAPI)
+    GET     /table/delete (restaurant_business_system.api.TableAPI)
+    GET     /table/get (restaurant_business_system.api.TableAPI)
+
+INFO  [2024-04-30 05:40:36,037] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@2aa5bd48{/,null,AVAILABLE}
+INFO  [2024-04-30 05:40:36,044] io.dropwizard.core.setup.AdminEnvironment: tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+INFO  [2024-04-30 05:40:36,045] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@230232b0{/,null,AVAILABLE}
+INFO  [2024-04-30 05:40:36,058] org.eclipse.jetty.server.AbstractConnector: Started application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:40:36,137] org.eclipse.jetty.server.AbstractConnector: Started admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:40:36,139] org.eclipse.jetty.server.Server: Started Server@6caf7803{STARTING}[11.0.20,sto=30000] @2684ms
+INFO  [2024-04-30 05:41:31,836] org.eclipse.jetty.server.Server: Stopped Server@6caf7803{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:41:31,837] org.eclipse.jetty.server.Server: Shutdown Server@6caf7803{STOPPING}[11.0.20,sto=30000]
+INFO  [2024-04-30 05:41:31,845] org.eclipse.jetty.server.AbstractConnector: Stopped application@13d9261f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+INFO  [2024-04-30 05:41:31,847] org.eclipse.jetty.server.AbstractConnector: Stopped admin@e9ef5b6{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+INFO  [2024-04-30 05:41:31,850] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@230232b0{/,null,STOPPED}
+INFO  [2024-04-30 05:41:31,867] org.eclipse.jetty.server.handler.ContextHandler: Stopped i.d.j.MutableServletContextHandler@2aa5bd48{/,null,STOPPED}

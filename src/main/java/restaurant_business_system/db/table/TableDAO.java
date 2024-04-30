@@ -10,6 +10,9 @@ import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 import jakarta.ws.rs.ForbiddenException;
 
+/**
+ * The TableDAO class provides methods for accessing and manipulating table data in the database.
+ */
 public class TableDAO {
     private final Jdbi jdbi;
 
@@ -17,6 +20,13 @@ public class TableDAO {
         this.jdbi = jdbi;
     }
 
+    /**
+     * Check if the user is the owner of the table.
+     * 
+     * @param idTable   the id of the table
+     * @param idAccount the id of the account
+     * @return true if the user is the owner of the table, false otherwise
+     */
     private boolean isOwner(String idTable, String idAccount) {
         return jdbi.withHandle(handle -> {
             // Get idRestaurant from idTable
@@ -41,6 +51,13 @@ public class TableDAO {
         });
     }
 
+    /**
+     * Check if the user is the owner of the restaurant.
+     * 
+     * @param idRestaurant the id of the restaurant
+     * @param idAccount    the id of the account
+     * @return true if the user is the owner of the restaurant, false otherwise
+     */
     private boolean isOwnerRestaurant(String idRestaurant, String idAccount) {
         return jdbi.withHandle(handle -> {
             Optional<String> idAccountRS = handle
@@ -52,6 +69,13 @@ public class TableDAO {
         });
     }
 
+    /**
+     * Create a new table.
+     * 
+     * @param t         the table to create
+     * @param idAccount the id of the account
+     * @return the created table
+     */
     @SqlUpdate("INSERT INTO tables (id_table, id_restaurant, status) VALUES (:idTable, :idRestaurant, :status)")
     public Table create(Table t, String idAccount) {
         //Check if idRestaurant is owned by idAccount
@@ -70,6 +94,13 @@ public class TableDAO {
         return t;
     }
 
+    /**
+     * Update the status of a table.
+     * 
+     * @param idTable the id of the table
+     * @param status  the new status of the table
+     * @param idAccount the id of the account
+     */
     @SqlUpdate("DELETE FROM tables WHERE id_table = :idTable")
     public void delete(String idTable, String idAccount) {
         // Check if the user is the owner of the table
@@ -84,6 +115,13 @@ public class TableDAO {
         });
     }
 
+    /**
+     * Get all tables of a restaurant.
+     * 
+     * @param idRestaurant the id of the restaurant
+     * @param idAccount    the id of the account
+     * @return a list of tables of the restaurant
+     */
     @SqlUpdate("SELECT * FROM tables WHERE id_restaurant = :idRestaurant")
     public List<TableDTO> get(String idRestaurant, String idAccount) {
         //Get id account from id restaurant

@@ -405,3 +405,68 @@ paths:
                 responses:
                     "200":
                         description: OK
+    /bills/checkOrCreate:
+            post:
+                tags:
+                    - Bill
+                description: When user scan QR code, if bill is not exist, create a new bill. If bill is exist, return bill information
+                requestBody:
+                    content:
+                        raw:
+                            schema:
+                                type: object
+                                properties:
+                                    idTable:
+                                        type: string
+                responses:
+                    "200":
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        idBill:
+                                            type: string
+                        description: OK
+    /bills/get:
+            get:
+                tags:
+                    - Bill
+                description: Get all bills from a table
+                parameters:
+                    - name: idBill
+                      in: query
+                      required: true
+                      schema:
+                        type: string
+                responses:
+                    "200":
+                        content:
+                            application/json:
+                                schema:
+                                    type: array
+                                    items:
+                                        type: object
+                                        properties:
+                                            idBill:
+                                                type: string
+                                            idTable:
+                                                type: string
+                                            foods:
+                                                type: array
+                                                items:
+                                                    type: object
+                                                    properties:
+                                                        idFood:
+                                                            type: string
+                                                        name:
+                                                            type: string
+                                                        price:
+                                                            type: number
+                                                        quantity:
+                                                            type: number
+                                            status:
+                                                type: string
+                                            total:
+                                                type: number
+                        description: OK

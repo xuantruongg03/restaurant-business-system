@@ -16,7 +16,7 @@ public class Bill {
     public Bill(String idTable) {
         this.idBill = GenerateID.generateUniqueID();
         this.idTable = idTable;
-        this.status = "Processing";
+        this.status = "Open";
     }
 
     public Bill() {

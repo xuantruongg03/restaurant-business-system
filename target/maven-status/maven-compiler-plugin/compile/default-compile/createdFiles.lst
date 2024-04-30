@@ -11,6 +11,7 @@ restaurant_business_system\api\MenuAPI.class
 restaurant_business_system\api\BillAPI.class
 restaurant_business_system\db\table\TableDAO.class
 restaurant_business_system\db\food\FoodDTO.class
+restaurant_business_system\api\OrderAPI.class
 restaurant_business_system\db\food\FoodDAO.class
 restaurant_business_system\db\menu\Menu.class
 restaurant_business_system\api\FoodApi.class
@@ -18,9 +19,12 @@ restaurant_business_system\api\TableAPI.class
 restaurant_business_system\db\food\Food.class
 restaurant_business_system\auth\UserAuthorizer.class
 restaurant_business_system\restaurant_business_systemApplication.class
+restaurant_business_system\db\bill\FoodDetail.class
 restaurant_business_system\db\order\Order.class
+restaurant_business_system\db\order\OrderDAO.class
 restaurant_business_system\core\User.class
 restaurant_business_system\auth\BasicAuthenticator.class
+restaurant_business_system\db\bill\BillDTO.class
 restaurant_business_system\db\restaurant\RestaurantDAO.class
 restaurant_business_system\api\RestaurantAPI.class
 restaurant_business_system\RestaurantBusinessSystemConfiguration.class
