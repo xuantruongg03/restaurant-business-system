@@ -21,12 +21,14 @@ import restaurant_business_system.api.AccountAPI;
 import restaurant_business_system.api.FoodApi;
 import restaurant_business_system.api.MenuAPI;
 import restaurant_business_system.api.RestaurantAPI;
+import restaurant_business_system.api.TableAPI;
 import restaurant_business_system.auth.BasicAuthenticator;
 import restaurant_business_system.core.User;
 import restaurant_business_system.db.account.AccountDAO;
 import restaurant_business_system.db.food.FoodDAO;
 import restaurant_business_system.db.menu.MenuDAO;
 import restaurant_business_system.db.restaurant.RestaurantDAO;
+import restaurant_business_system.db.table.TableDAO;
 
 /**
  * The main application class for the restaurant business system.
@@ -62,6 +64,7 @@ public class restaurant_business_systemApplication extends Application<Restauran
         e.jersey().register(new RestaurantAPI(new RestaurantDAO(jdbi)));
         e.jersey().register(new MenuAPI(new MenuDAO(jdbi)));
         e.jersey().register(new FoodApi(new FoodDAO(jdbi)));
+        e.jersey().register(new TableAPI(new TableDAO(jdbi)));
 
         // Auth
         e.jersey().register(new AuthDynamicFeature(

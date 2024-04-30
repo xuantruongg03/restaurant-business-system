@@ -336,3 +336,72 @@ paths:
                 responses:
                     "200":
                         description: OK
+    /table/create:
+            post:
+                tags:
+                    - Table
+                description: Create a new table
+                security:
+                    - BasicAuth: []
+                parameters:
+                  - name: Authorization
+                    in: header
+                    required: true
+                    schema:
+                        type: string
+                    description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
+                requestBody:
+                    content:
+                        raw:
+                            schema:
+                                type: object
+                                properties:
+                                    idRestaurant:
+                                        type: string
+                responses:
+                    "200":
+                        description: OK
+    /table/get:
+            get:
+                tags:
+                    - Table
+                description: Get all tables from a restaurant
+                security:
+                  - BasicAuth: []
+                parameters:
+                    - name: Authorization
+                      in: header
+                      required: true
+                      schema:
+                        type: string
+                      description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
+                    - name: idRestaurant
+                      in: query
+                      required: true
+                      schema:
+                        type: string
+                responses:
+                    "200":
+                        description: OK
+    /table/delete:
+            get:
+                tags:
+                    - Table
+                description: Delete a table
+                security:
+                    - BasicAuth: []
+                parameters:
+                  - name: Authorization
+                    in: header
+                    required: true
+                    schema:
+                        type: string
+                    description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
+                  - name: idTable
+                    in: query
+                    required: true
+                    schema:
+                        type: string
+                responses:
+                    "200":
+                        description: OK
