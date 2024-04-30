@@ -7,6 +7,10 @@ import java.util.Map;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
+import restaurant_business_system.db.food.FoodDetails;
+import restaurant_business_system.db.food.FoodOrder;
+import restaurant_business_system.db.order.Order;
+
 /**
  * The BillDAO class is responsible for performing database operations related to bills.
  */
@@ -105,23 +109,29 @@ public class BillDAO {
 
             if(results.get(0).get("id_bill") != null && results.get(0).get("id_food") == null)
                 //tra ve list food rong
-                return new BillDTO(idBill, (String) results.get(0).get("id_bill"), new ArrayList<>(), "Open");
+                return new BillDTO((String) results.get(0).get("id_table"), new ArrayList<>(), "Open");
 
             // Create a list of FoodDetail objects
-            List<FoodDetail> foods = new ArrayList<>();
+            List<FoodDetails> foods = new ArrayList<>();
             for (Map<String, Object> result : results) {
                 String idFood = (String) result.get("id_food");
                 String name = (String) result.get("name");
-                int price = (int) result.get("price");
+                float price = (float) result.get("price");
                 int quantity = (int) result.get("quantity");
-                foods.add(new FoodDetail(idFood, name, price, quantity));
+                foods.add(new FoodDetails(idFood, name, price, quantity));
             }
             
-            return new BillDTO(idBill, (String) results.get(0).get("id_bill"), foods, "Open");
+            return new BillDTO((String) results.get(0).get("id_table"), foods, "Open");
         });
 
     }
 
+    /**
+     * Checks the bill associated with the given table ID.
+     *
+     * @param idTable the ID of the table to check the bill for
+     * @return the ID of the bill if it exists and is open, or null if no bill is found
+     */
     public String checkBill(String idTable) {
         return jdbi.withHandle(handle -> {
             List<Map<String, Object>> results = handle.createQuery("SELECT * FROM bills WHERE id_table = :idTable and status = 'Open'")
@@ -133,6 +143,39 @@ public class BillDAO {
             } else {
                 return (String) results.get(0).get("id_bill");
             }
+        });
+    }
+
+    /**
+     * Adds an order to a bill in the database.
+     *
+     * @param idBill the ID of the bill to add the order to
+     * @param idFood the ID of the food item to add to the order
+     * @param quantity the quantity of the food item to add to the order
+     * @return true if the order was successfully added, false otherwise
+     */
+    public boolean order(String idBill, List<FoodOrder> foodOrders) {
+        return jdbi.withHandle(handle -> {
+            // Check if the bill is open
+            List<Map<String, Object>> results = handle.createQuery("SELECT * FROM bills WHERE id_bill = :idBill and status = 'Open'")
+                    .bind("idBill", idBill)
+                    .mapToMap()
+                    .list();
+            if (results.isEmpty())
+                return false;
+
+            // Add the order to the database
+            for (FoodOrder foodDetail : foodOrders) {
+                Order order = new Order(idBill, foodDetail.getIdFood(), foodDetail.getQuantity());
+                handle.createUpdate("INSERT INTO orders (id_order, id_bill, id_food, quantity, status) VALUES (:idOrder, :idBill, :idFood, :quantity, :status)")
+                        .bind("idOrder", order.getIdOrder())
+                        .bind("idBill", idBill)
+                        .bind("idFood", order.getIdFood())
+                        .bind("quantity", order.getQuantity())
+                        .bind("status", order.getStatus())
+                        .execute();
+            }
+            return true;
         });
     }
 }

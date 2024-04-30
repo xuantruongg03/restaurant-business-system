@@ -2,7 +2,6 @@ D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\ap
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\BillAPI.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\FoodApi.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\MenuAPI.java
-D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\OrderAPI.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\RestaurantAPI.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\api\TableAPI.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\auth\BasicAuthenticator.java
@@ -16,7 +15,9 @@ D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\DBManager.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\food\Food.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\food\FoodDAO.java
+D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\food\FoodDetails.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\food\FoodDTO.java
+D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\food\FoodOrder.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\menu\Menu.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\menu\MenuDAO.java
 D:\Github\restaurant_business_system\src\main\java\restaurant_business_system\db\menu\MenuDTO.java

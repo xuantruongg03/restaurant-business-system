@@ -448,8 +448,6 @@ paths:
                                     items:
                                         type: object
                                         properties:
-                                            idBill:
-                                                type: string
                                             idTable:
                                                 type: string
                                             foods:
@@ -470,3 +468,30 @@ paths:
                                             total:
                                                 type: number
                         description: OK
+    /bills/order:
+            post:
+                tags:
+                    - Bill
+                description: Order foods to a bill
+                requestBody:
+                    content:
+                        raw:
+                            schema:
+                                type: object
+                                properties:
+                                    idBill:
+                                        type: string
+                                    foodOrders:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                idFood:
+                                                    type: string
+                                                quantity:
+                                                    type: number
+                responses:
+                    "200":
+                        description: OK
+                    "409":
+                        description: Conflict
