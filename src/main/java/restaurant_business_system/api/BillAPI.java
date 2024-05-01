@@ -112,14 +112,4 @@ public class BillAPI {
         }
         return Response.status(Response.Status.CONFLICT).build();
     }
-
-    @POST
-    @Path("close")
-    public Response close(@QueryParam("idBill") String idBill) {
-        if (dao.closeBill(idBill)) {
-            notifyClients();
-            return Response.ok("OK").build();
-        }
-        return Response.status(Response.Status.CONFLICT).build();
-    }
 }
