@@ -146,6 +146,16 @@ public class BillDAO {
         });
     }
 
+    private boolean checkBillExist(String idBill) {
+        return jdbi.withHandle(handle -> {
+            List<Map<String, Object>> results = handle.createQuery("SELECT * FROM bills WHERE id_bill = :idBill")
+                    .bind("idBill", idBill)
+                    .mapToMap()
+                    .list();
+            return !results.isEmpty();
+        });
+    }
+
     /**
      * Adds an order to a bill in the database.
      *
@@ -157,11 +167,7 @@ public class BillDAO {
     public boolean order(String idBill, List<FoodOrder> foodOrders) {
         return jdbi.withHandle(handle -> {
             // Check if the bill is open
-            List<Map<String, Object>> results = handle.createQuery("SELECT * FROM bills WHERE id_bill = :idBill and status = 'Open'")
-                    .bind("idBill", idBill)
-                    .mapToMap()
-                    .list();
-            if (results.isEmpty())
+            if(!checkBillExist(idBill))
                 return false;
 
             // Add the order to the database
