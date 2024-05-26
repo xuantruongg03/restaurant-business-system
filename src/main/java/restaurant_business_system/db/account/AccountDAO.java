@@ -5,6 +5,8 @@ import java.util.Map;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
+import restaurant_business_system.exceptions.AccountExistsException;
+
 /**
  * The AccountDAO class is responsible for performing database operations
  * related to the Account entity.
@@ -31,7 +33,7 @@ public class AccountDAO {
             //Check if the account already exists => throw exception 409
             boolean existingAccount = accountIsExist(account.getUsername());
             if (existingAccount) {
-                throw new RuntimeException("Account already exists");
+                throw new AccountExistsException("Account already exists");
             }
 
             handle.createUpdate(
@@ -80,4 +82,3 @@ public class AccountDAO {
     }
 }
     
-

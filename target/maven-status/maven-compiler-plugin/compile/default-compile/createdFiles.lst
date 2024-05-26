@@ -28,6 +28,7 @@ restaurant_business_system\api\RestaurantAPI.class
 restaurant_business_system\RestaurantBusinessSystemConfiguration.class
 restaurant_business_system\db\table\TableDTO.class
 restaurant_business_system\db\menu\MenuDTO.class
+restaurant_business_system\exceptions\AccountExistsException.class
 restaurant_business_system\db\food\FoodDetails.class
 restaurant_business_system\db\menu\MenuDAO.class
 restaurant_business_system\resources\GenerateID.class
