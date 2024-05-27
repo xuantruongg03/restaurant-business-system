@@ -47,6 +47,9 @@ public class TableAPI {
     @GET
     @Path("/get")
     public Response getTable(@Auth User u, @QueryParam("idRestaurant") String r){
+        if(r == null) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
         if(u != null) {
             return Response.ok(dao.get(r, u.getId())).build();
         }
