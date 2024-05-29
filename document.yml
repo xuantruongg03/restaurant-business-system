@@ -358,6 +358,8 @@ paths:
                                 properties:
                                     idRestaurant:
                                         type: string
+                                    tableName:
+                                        type: string
                 responses:
                     "200":
                         description: OK

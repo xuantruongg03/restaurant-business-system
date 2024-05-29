@@ -25,7 +25,7 @@ public class TableAPI {
     @Path("/create")
     public Response createTable(@Auth User u, Table t) {
         if(u != null) {
-            Table tb = new Table(t.getIdRestaurant());
+            Table tb = new Table(t.getIdRestaurant(), t.getTableName());
             if(dao.create(tb, u.getId()) != null) {
                 return Response.ok("OK").build();
             }

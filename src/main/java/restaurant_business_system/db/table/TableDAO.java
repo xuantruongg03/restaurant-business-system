@@ -76,7 +76,7 @@ public class TableDAO {
      * @param idAccount the id of the account
      * @return the created table
      */
-    @SqlUpdate("INSERT INTO tables (id_table, id_restaurant, status) VALUES (:idTable, :idRestaurant, :status)")
+    @SqlUpdate("INSERT INTO tables (id_table, id_restaurant, status, name_table) VALUES (:idTable, :idRestaurant, :status, :nameTable)")
     public Table create(Table t, String idAccount) {
         //Check if idRestaurant is owned by idAccount
         if (!isOwnerRestaurant(t.getIdRestaurant(), idAccount)) {
@@ -85,10 +85,11 @@ public class TableDAO {
 
         jdbi.useHandle(handle -> {
             handle.createUpdate(
-                    "INSERT INTO tables (id_table, id_restaurant, status) VALUES (:idTable, :idRestaurant, :status)")
+                    "INSERT INTO tables (id_table, id_restaurant, status, name_table) VALUES (:idTable, :idRestaurant, :status, :nameTable)")
                     .bind("idTable", t.getIdTable())
                     .bind("idRestaurant", t.getIdRestaurant())
                     .bind("status", t.getStatus())
+                    .bind("nameTable", t.getTableName())
                     .execute();
         });
         return t;
@@ -141,7 +142,7 @@ public class TableDAO {
                         .list());
         List<TableDTO> tables = new ArrayList<>();
         for (Map<String, Object> r : result) {
-            tables.add(new TableDTO((String) r.get("id_table"), (String) r.get("status")));
+            tables.add(new TableDTO((String) r.get("id_table"), (String) r.get("status"), (String) r.get("name_table")));
         }
         return tables;
     }

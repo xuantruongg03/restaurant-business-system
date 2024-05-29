@@ -9,6 +9,7 @@ public class Table {
     private String idTable;
     private String idRestaurant;
     private String status;
+    private String tableName;
 
     /**
      * Constructs a Table object with the specified table ID, restaurant ID, and status.
@@ -16,11 +17,13 @@ public class Table {
      * @param idTable     the ID of the table
      * @param idRestaurant the ID of the restaurant
      * @param status      the status of the table
+     * @param tableName   the name of the table
      */
-    public Table(String idTable, String idRestaurant, String status) {
+    public Table(String idTable, String idRestaurant, String status, String tableName) {
         this.idTable = idTable;
         this.idRestaurant = idRestaurant;
         this.status = status;
+        this.tableName = tableName;
     }
 
     /**
@@ -30,10 +33,11 @@ public class Table {
      * 
      * @param idRestaurant the ID of the restaurant
      */
-    public Table(String idRestaurant) {
+    public Table(String idRestaurant, String tableName) {
         this.idTable = GenerateID.generateUniqueID();
         this.idRestaurant = idRestaurant;
         this.status = "Available";
+        this.tableName = tableName;
     }
 
     /**
@@ -94,5 +98,14 @@ public class Table {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    /**
+     * Returns the name of the table.
+     * 
+     * @return the name of the table
+     */
+    public String getTableName() {
+        return tableName;
     }
 }
