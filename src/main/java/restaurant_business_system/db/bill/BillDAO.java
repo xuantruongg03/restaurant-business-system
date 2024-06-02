@@ -13,7 +13,8 @@ import restaurant_business_system.db.order.FoodOrder;
 import restaurant_business_system.db.order.Order;
 
 /**
- * The BillDAO class is responsible for performing database operations related to bills.
+ * The BillDAO class is responsible for performing database operations related
+ * to bills.
  */
 public class BillDAO {
     private final Jdbi jdbi;
@@ -108,8 +109,8 @@ public class BillDAO {
             if (results.isEmpty())
                 return null;
 
-            if(results.get(0).get("id_bill") != null && results.get(0).get("id_food") == null)
-                //tra ve list food rong
+            if (results.get(0).get("id_bill") != null && results.get(0).get("id_food") == null)
+                // tra ve list food rong
                 return new BillDTO((String) results.get(0).get("id_table"), new ArrayList<>(), "Open");
 
             // Create a list of FoodDetail objects
@@ -121,7 +122,7 @@ public class BillDAO {
                 int quantity = (int) result.get("quantity");
                 foods.add(new FoodDetails(idFood, name, price, quantity));
             }
-            
+
             return new BillDTO((String) results.get(0).get("id_table"), foods, "Open");
         });
 
@@ -131,15 +132,17 @@ public class BillDAO {
      * Checks the bill associated with the given table ID.
      *
      * @param idTable the ID of the table to check the bill for
-     * @return the ID of the bill if it exists and is open, or null if no bill is found
+     * @return the ID of the bill if it exists and is open, or null if no bill is
+     *         found
      */
     public String checkBill(String idTable) {
         return jdbi.withHandle(handle -> {
-            List<Map<String, Object>> results = handle.createQuery("SELECT * FROM bills WHERE id_table = :idTable and status = 'Open'")
+            List<Map<String, Object>> results = handle
+                    .createQuery("SELECT * FROM bills WHERE id_table = :idTable and status = 'Open'")
                     .bind("idTable", idTable)
                     .mapToMap()
                     .list();
-            if (results.isEmpty()){
+            if (results.isEmpty()) {
                 return null;
             } else {
                 return (String) results.get(0).get("id_bill");
@@ -160,21 +163,22 @@ public class BillDAO {
     /**
      * Adds an order to a bill in the database.
      *
-     * @param idBill the ID of the bill to add the order to
-     * @param idFood the ID of the food item to add to the order
+     * @param idBill   the ID of the bill to add the order to
+     * @param idFood   the ID of the food item to add to the order
      * @param quantity the quantity of the food item to add to the order
      * @return true if the order was successfully added, false otherwise
      */
     public boolean order(String idBill, List<FoodOrder> foodOrders) {
         return jdbi.withHandle(handle -> {
             // Check if the bill is open
-            if(!checkBillExist(idBill))
+            if (!checkBillExist(idBill))
                 return false;
 
             // Add the order to the database
             for (FoodOrder foodDetail : foodOrders) {
                 Order order = new Order(idBill, foodDetail.getIdFood(), foodDetail.getQuantity());
-                handle.createUpdate("INSERT INTO orders (id_order, id_bill, id_food, quantity, status) VALUES (:idOrder, :idBill, :idFood, :quantity, :status)")
+                handle.createUpdate(
+                        "INSERT INTO orders (id_order, id_bill, id_food, quantity, status) VALUES (:idOrder, :idBill, :idFood, :quantity, :status)")
                         .bind("idOrder", order.getIdOrder())
                         .bind("idBill", idBill)
                         .bind("idFood", order.getIdFood())
@@ -186,58 +190,68 @@ public class BillDAO {
         });
     }
 
-    // @SqlUpdate("SELECT * FROM orders WHERE id_bill = :idRestaurant")
     /**
-     * Select all food of bill in restaurant
-     * // Get all table
-     * Select * from tables where id_restaurant = :idRestaurant
      * 
-     * // Get all bill of table
-     * Select * from bills where id_table = :idTable
-     * 
-     * // Get all food of bill
-     * Select * from orders where id_bill = :idBill
-     * 
-     * // Get all food
-     * Select * from foods where id_food = :idFood
+     * @param idRestaurant
+     * @return List<FoodOrderDTO>
+     *         [
+        *         {
+                      idTable: "1",
+            *         idBill: "1",
+            *         foods: [
+                        *         {
+                            *         idFood: "1",
+                            *         name: "Bún bò Huế",
+                            *         image: "bunbohue.jpg"
+                                      quantity: 2,
+                                      price: 50000
+                        *         },
+                        *         {
+                            *         idFood: "2",
+                            *         name: "Bún riêu",
+                            *         image: "bunrieu.jpg"
+                                      quantity: 1,
+                                      price: 40000
+                        *         }
+        *                  ]
+        *         total: 140000
+        *         }
      */
-    // public List<FoodOrderDTO> getAllFoodOrders(String idRestaurant) {
-    //     String sqlGetTable = "SELECT id_table FROM tables WHERE id_restaurant = :idRestaurant";
-    //     String sqlGetBill = "SELECT id_bill FROM bills WHERE id_table = :idTable";
-    //     String sqlGetOrder = "SELECT id_food FROM orders WHERE id_bill = :idBill";
-    //     String sqlGetFoodDetail = "SELECT id_food, name, image FROM foods WHERE id_food = :idFood";
 
-    //     List<FoodOrderDTO> foodOrders = new ArrayList<>();
+     //Chưa check
+    @SqlUpdate("SELECT * FROM orders WHERE id_bill = :idRestaurant")
+    public List<FoodOrderDTO> getAllFoodOrders(String idRestaurant) {
+        String sqlGetBill = "SELECT id_bill, tables.id_table, tables.name_table FROM tables inner join bills on bills.id_table = tables.id_table WHERE id_restaurant = :idRestaurant and bills.status = 'Open'";
+        String sqlGetOrder = "SELECT id_food, quantity, status FROM orders WHERE id_bill = :idBill";
+        String sqlGetFoodDetail = "SELECT id_food, name, image, price FROM foods WHERE id_food = :idFood";
 
-    //     return jdbi.withHandle(handle -> {
-    //         List<Map<String, Object>> resultTable = handle.createQuery(sqlGetTable)
-    //                 .bind("idRestaurant", idRestaurant)
-    //                 .mapToMap()
-    //                 .list();
-    //         for (Map<String,Object> map : resultTable) {
-    //             FoodOrderDTO x = new FoodOrderDTO((String) map.get("id_table"), new ArrayList<>());
-    //             List<Map<String, Object>> resultBill = handle.createQuery(sqlGetBill)
-    //                     .bind("idTable", map.get("id_table"))
-    //                     .mapToMap()
-    //                     .list();
-
-    //             for (Map<String,Object> mapBill : resultBill) {
-    //                 List<Map<String, Object>> resultOrder = handle.createQuery(sqlGetOrder)
-    //                         .bind("idBill", mapBill.get("id_bill"))
-    //                         .mapToMap()
-    //                         .list();
-
-    //                 for (Map<String,Object> mapOrder : resultOrder) {
-    //                     List<Map<String, Object>> resultFoodDetail = handle.createQuery(sqlGetFoodDetail)
-    //                             .bind("idFood", mapOrder.get("id_food"))
-    //                             .mapToMap()
-    //                             .list();
-
-    //                     for (Map<String,Object> mapFoodDetail : resultFoodDetail) {
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     });
-    // }
+        return jdbi.withHandle(handle -> {
+            List<Map<String, Object>> results = handle.createQuery(sqlGetBill).bind("idRestaurant", idRestaurant)
+                    .mapToMap().list();
+            List<FoodOrderDTO> orders = new ArrayList<>();
+            for (Map<String, Object> result : results) {
+                String idBill = (String) result.get("id_bill");
+                String nameTable = (String) result.get("name_table");
+                String idTable = (String) result.get("id_table");
+                FoodOrderDTO order = new FoodOrderDTO(idTable, idBill, nameTable);
+                List<Map<String, Object>> orderResults = handle.createQuery(sqlGetOrder).bind("idBill", idBill)
+                        .mapToMap().list();
+                for (Map<String, Object> orderResult : orderResults) {
+                    String idFood = (String) orderResult.get("id_food");
+                    int quantity = (int) orderResult.get("quantity");
+                    List<Map<String, Object>> foodResults = handle.createQuery(sqlGetFoodDetail).bind("idFood", idFood)
+                            .mapToMap().list();
+                    for (Map<String, Object> foodResult : foodResults) {
+                        String name = (String) foodResult.get("name");
+                        String image = (String) foodResult.get("image");
+                        float price = (float) foodResult.get("price");
+                        order.addFoodDetails(new FoodDetails(idFood, name, price, image, quantity));
+                    }
+                }
+                order.calculateTotal();
+                orders.add(order);
+            }
+            return orders;
+        });
+    }
 }

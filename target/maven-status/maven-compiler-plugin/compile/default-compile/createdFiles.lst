@@ -32,5 +32,6 @@ restaurant_business_system\db\food\FoodDetails.class
 restaurant_business_system\db\menu\MenuDAO.class
 restaurant_business_system\resources\GenerateID.class
 restaurant_business_system\api\AccountAPI.class
-restaurant_business_system\db\food\FoodOrder.class
 restaurant_business_system\api\OrderRequest.class
+restaurant_business_system\db\food\FoodOrderDTO.class
+restaurant_business_system\db\order\FoodOrder.class
