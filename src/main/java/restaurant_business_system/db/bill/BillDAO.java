@@ -8,7 +8,8 @@ import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 import restaurant_business_system.db.food.FoodDetails;
-import restaurant_business_system.db.food.FoodOrder;
+import restaurant_business_system.db.food.FoodOrderDTO;
+import restaurant_business_system.db.order.FoodOrder;
 import restaurant_business_system.db.order.Order;
 
 /**
@@ -184,4 +185,59 @@ public class BillDAO {
             return true;
         });
     }
+
+    // @SqlUpdate("SELECT * FROM orders WHERE id_bill = :idRestaurant")
+    /**
+     * Select all food of bill in restaurant
+     * // Get all table
+     * Select * from tables where id_restaurant = :idRestaurant
+     * 
+     * // Get all bill of table
+     * Select * from bills where id_table = :idTable
+     * 
+     * // Get all food of bill
+     * Select * from orders where id_bill = :idBill
+     * 
+     * // Get all food
+     * Select * from foods where id_food = :idFood
+     */
+    // public List<FoodOrderDTO> getAllFoodOrders(String idRestaurant) {
+    //     String sqlGetTable = "SELECT id_table FROM tables WHERE id_restaurant = :idRestaurant";
+    //     String sqlGetBill = "SELECT id_bill FROM bills WHERE id_table = :idTable";
+    //     String sqlGetOrder = "SELECT id_food FROM orders WHERE id_bill = :idBill";
+    //     String sqlGetFoodDetail = "SELECT id_food, name, image FROM foods WHERE id_food = :idFood";
+
+    //     List<FoodOrderDTO> foodOrders = new ArrayList<>();
+
+    //     return jdbi.withHandle(handle -> {
+    //         List<Map<String, Object>> resultTable = handle.createQuery(sqlGetTable)
+    //                 .bind("idRestaurant", idRestaurant)
+    //                 .mapToMap()
+    //                 .list();
+    //         for (Map<String,Object> map : resultTable) {
+    //             FoodOrderDTO x = new FoodOrderDTO((String) map.get("id_table"), new ArrayList<>());
+    //             List<Map<String, Object>> resultBill = handle.createQuery(sqlGetBill)
+    //                     .bind("idTable", map.get("id_table"))
+    //                     .mapToMap()
+    //                     .list();
+
+    //             for (Map<String,Object> mapBill : resultBill) {
+    //                 List<Map<String, Object>> resultOrder = handle.createQuery(sqlGetOrder)
+    //                         .bind("idBill", mapBill.get("id_bill"))
+    //                         .mapToMap()
+    //                         .list();
+
+    //                 for (Map<String,Object> mapOrder : resultOrder) {
+    //                     List<Map<String, Object>> resultFoodDetail = handle.createQuery(sqlGetFoodDetail)
+    //                             .bind("idFood", mapOrder.get("id_food"))
+    //                             .mapToMap()
+    //                             .list();
+
+    //                     for (Map<String,Object> mapFoodDetail : resultFoodDetail) {
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     });
+    // }
 }

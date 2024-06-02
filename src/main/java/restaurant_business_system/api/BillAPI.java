@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import io.dropwizard.auth.Auth;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -12,10 +13,12 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import restaurant_business_system.core.User;
 import restaurant_business_system.db.bill.Bill;
 import restaurant_business_system.db.bill.BillDAO;
 import restaurant_business_system.db.bill.BillDTO;
-import restaurant_business_system.db.food.FoodOrder;
+import restaurant_business_system.db.food.FoodOrderDTO;
+import restaurant_business_system.db.order.FoodOrder;
 
 class OrderRequest {
     private String idBill;
@@ -112,4 +115,14 @@ public class BillAPI {
         }
         return Response.status(Response.Status.CONFLICT).build();
     }
+
+    // @GET
+    // @Path("/get-all-order")
+    // public Response getAllOrder(@Auth User u, @QueryParam("idRestaurant") String idBill) {
+    //     List<FoodOrderDTO> orders = dao.getAllFoodOrders(idBill);
+    //     if (orders != null) {
+    //         return Response.ok(orders).build();
+    //     }
+    //     return Response.status(Response.Status.NOT_FOUND).build();
+    // }
 }

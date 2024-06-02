@@ -9,6 +9,7 @@ public class Menu {
     private String idMenu;
     private String idRestaurant;
     private String name;
+    private String status = "active";
 
     public Menu(String idRestaurant, String name) {
         this.idMenu = GenerateID.generateUniqueID();
@@ -16,10 +17,11 @@ public class Menu {
         this.name = name;
     }
 
-    public Menu(String idMenu, String idRestaurant, String name) {
+    public Menu(String idMenu, String idRestaurant, String name, String status) {
         this.idMenu = idMenu;
         this.idRestaurant = idRestaurant;
         this.name = name;
+        this.status = status;
     }
 
     public Menu() {
@@ -47,5 +49,9 @@ public class Menu {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

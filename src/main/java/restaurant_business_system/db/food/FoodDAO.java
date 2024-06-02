@@ -47,7 +47,8 @@ public class FoodDAO {
                 return false;
             }
             // Get the account ID from the restaurant ID
-            Optional<String> id = h.createQuery("SELECT id_account FROM restaurants WHERE id_restaurant = :idRestaurant")
+            Optional<String> id = h
+                    .createQuery("SELECT id_account FROM restaurants WHERE id_restaurant = :idRestaurant")
                     .bind("idRestaurant", idRestaurant)
                     .mapTo(String.class)
                     .findOne();
@@ -121,17 +122,19 @@ public class FoodDAO {
     public void delete(String idFood, String idAccount) {
         jdbi.useHandle(handle -> {
             // Get the menu ID from the food ID
-            String idMenu = handle.createQuery("SELECT id_menu FROM foods WHERE id_food = :idFood")
-                    .bind("idFood", idFood)
-                    .mapToBean(String.class)
-                    .one();
+                Map<String, Object> resultList = jdbi
+                    .withHandle(h -> h.createQuery("SELECT id_menu FROM foods WHERE id_food = :idFood")
+                        .bind("idFood", idFood)
+                        .mapToMap()
+                        .one());
+                String idMenu = (String) resultList.get("id_menu");
 
-            // Check if the user is the owner of the menu
-            if (!isOwner(idMenu, idAccount)) {
+                // Check if the user is the owner of the menu
+                if (!isOwner(idMenu, idAccount)) {
                 throw new ForbiddenException("You are not the owner of the menu");
-            }
+                }
 
-            handle.createUpdate("DELETE FROM foods WHERE id_food = :idFood")
+                handle.createUpdate("DELETE FROM foods WHERE id_food = :idFood")
                     .bind("idFood", idFood)
                     .execute();
         });
@@ -176,5 +179,34 @@ public class FoodDAO {
             foods.add(food);
         }
         return foods;
+    }
+
+    /**
+     * Retrieves a food by its ID from the database.
+     *
+     * @param idFood the ID of the food
+     * @return the FoodDTO object representing the food
+     */
+    @SqlUpdate("SELECT id_food, name, price, image FROM foods WHERE id_food = :idFood")
+    public FoodDTO findById(String idFood) {
+        List<Map<String, Object>> resultList = jdbi.withHandle(
+                handle -> handle.createQuery("SELECT id_food, name, price, image FROM foods WHERE id_food = :idFood")
+                        .bind("idFood", idFood)
+                        .mapToMap()
+                        .list());
+
+        // If the result list is empty, return null
+        if (resultList.isEmpty()) {
+            return null;
+        }
+
+        // Otherwise, get the first result (since we expect only one row for a specific
+        // id)
+        Map<String, Object> result = resultList.get(0);
+        return new FoodDTO(
+                (String) result.get("id_food"),
+                (String) result.get("name"),
+                (Float) result.get("price"),
+                (String) result.get("image"));
     }
 }

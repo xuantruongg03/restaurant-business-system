@@ -85,8 +85,8 @@ public class MenuAPI {
     @Path("/delete")
     public Response deleteMenu(@Auth User u, @QueryParam("idMenu") String idMenu) {
         if(u != null) {
-            // LOGGER.info("Deleting menu id: " + idMenu);
-            // LOGGER.info("User id: " + u.getId());
+            LOGGER.info("Deleting menu id: " + idMenu);
+            LOGGER.info("User id: " + u.getId());
             dao.delete(idMenu, u.getId());
             return Response.ok("OK").build();
         } else {
@@ -105,6 +105,9 @@ public class MenuAPI {
     public Response updateMenu(@Auth User u, Menu menu) {
         if(u != null) {
             LOGGER.info("Updating menu: " + menu.getIdMenu());
+            if(menu.getIdMenu() == null || menu.getName() == null || menu.getIdRestaurant() == null){
+                return Response.status(Response.Status.BAD_REQUEST).build();
+            }
             dao.update(menu, u.getId());
             return Response.ok("OK").build();
         } else {

@@ -261,6 +261,34 @@ paths:
                 responses:
                     "200":
                         description: OK
+    /food/get-by-id:
+            get:
+                tags:
+                    - Food
+                description: Get a food by id
+                parameters:
+                    - name: idFood
+                      in: query
+                      required: true
+                      schema:
+                        type: string
+                responses:
+                    "200":
+                        description: OK
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        idFood:
+                                            type: string
+                                        name:
+                                            type: string
+                                        price:
+                                            type: number
+                                        image:
+                                            type: string
+                                
     /food/update:
             post:
                 tags:

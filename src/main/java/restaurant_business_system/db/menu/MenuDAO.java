@@ -31,12 +31,13 @@ public class MenuDAO {
      * @param menu the menu object to be created
      * @return the created menu object
      */
-    @SqlUpdate("INSERT INTO menus (id_menu, name, id_restaurant) VALUES (:idMenu, :name, :idRestaurant)")
+    @SqlUpdate("INSERT INTO menus (id_menu, name, id_restaurant, status) VALUES (:idMenu, :name, :idRestaurant, :status)")
     public Menu create(Menu menu) {
-        jdbi.useHandle(handle -> handle.createUpdate("INSERT INTO menus (id_menu, name, id_restaurant) VALUES (:idMenu, :name, :idRestaurant)")
+        jdbi.useHandle(handle -> handle.createUpdate("INSERT INTO menus (id_menu, name, id_restaurant, status) VALUES (:idMenu, :name, :idRestaurant, :status)")
                 .bind("idMenu", menu.getIdMenu())
                 .bind("name", menu.getName())
                 .bind("idRestaurant", menu.getIdRestaurant())
+                .bind("status", menu.getStatus())
                 .execute());
         return menu;
     }
@@ -90,7 +91,7 @@ public class MenuDAO {
      *
      * @param idMenu the ID of the menu to be deleted
      */
-    @SqlUpdate("DELETE FROM menus WHERE id_menu = :idMenu")
+    @SqlUpdate("Update menus set status = 'inactive' WHERE id_menu = :idMenu")
     public void delete(String idMenu, String idAccount) {
         jdbi.useHandle(handle -> {
             //Get id_restaurant from id_menu
@@ -103,15 +104,21 @@ public class MenuDAO {
             if (!isOwner(idRestaurant, idAccount)) {
                 throw new ForbiddenException("You are not the owner of this restaurant.");
             }
-            // Delete the food items associated with the menu
-            handle.createUpdate("DELETE FROM foods WHERE id_menu = :idMenu")
+
+            // Set the status of the menu to inactive
+            handle.createUpdate("Update menus set status = 'Inactive' WHERE id_menu = :idMenu")
                 .bind("idMenu", idMenu)
                 .execute();
 
-            // Delete the menu
-            handle.createUpdate("DELETE FROM menus WHERE id_menu = :idMenu")
-                .bind("idMenu", idMenu)
-                .execute();
+            // // Delete the food items associated with the menu
+            // handle.createUpdate("DELETE FROM foods WHERE id_menu = :idMenu")
+            //     .bind("idMenu", idMenu)
+            //     .execute();
+
+            // // Delete the menu
+            // handle.createUpdate("DELETE FROM menus WHERE id_menu = :idMenu")
+            //     .bind("idMenu", idMenu)
+            //     .execute();
         });
     }
 
@@ -129,15 +136,15 @@ public class MenuDAO {
      * @param idRestaurant the ID of the menu to get
      * @return the menu object
      */
-    @SqlUpdate("SELECT * FROM menus WHERE id_restaurant = :idRestaurant")
+    @SqlUpdate("SELECT * FROM menus WHERE id_restaurant = :idRestaurant AND status = 'Active'")
     public List<MenuDTO> get(String idRestaurant) {
-        List<Map<String, Object>> menus = jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM menus WHERE id_restaurant = :idRestaurant")
+        List<Map<String, Object>> menus = jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM menus WHERE id_restaurant = :idRestaurant AND status = 'Active'")
                 .bind("idRestaurant", idRestaurant)
                 .mapToMap()
                 .list());
         List<MenuDTO> menuList = new ArrayList<>();
         for (Map<String, Object> menu : menus) {
-            menuList.add(new MenuDTO((String) menu.get("id_menu"), (String) menu.get("name")));
+            menuList.add(new MenuDTO((String) menu.get("id_menu"), (String) menu.get("name"), (String) menu.get("status")));
         }
         return menuList;
     }

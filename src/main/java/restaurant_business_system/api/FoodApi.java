@@ -1,5 +1,8 @@
 package restaurant_business_system.api;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.dropwizard.auth.Auth;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -17,13 +20,18 @@ import restaurant_business_system.db.food.FoodDAO;
 public class FoodApi {
     private FoodDAO dao;
 
+    private Logger logger;
+
     public FoodApi(FoodDAO dao) {
         this.dao = dao;
+        logger = LoggerFactory.getLogger(FoodApi.class);
     }
 
     @POST
     @Path("/create")
     public Response addFood(@Auth User u, Food food) {
+        logger.info(food.getIdMenu() + " " + food.getName() + " " + food.getImage());
+        
         if(food.getIdMenu() == null || food.getName() == null || food.getImage() == null) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
@@ -67,5 +75,11 @@ public class FoodApi {
     public Response deleteAllFoods(@Auth User u, @QueryParam("idMenu") String idMenu) {
         dao.deleteAll(idMenu, u.getId());
         return Response.ok("OK").build();
+    }
+
+    @GET
+    @Path("/get-by-id")
+    public Response getFoodById(@QueryParam ("idFood") String idFood) {
+        return Response.ok(dao.findById(idFood)).build();
     }
 }
