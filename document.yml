@@ -30,10 +30,6 @@ paths:
                                     type: string
                                 password:
                                     type: string
-                                name:
-                                    type: string
-                                phone:
-                                    type: string
             responses:
                 "200":
                     description: OK
@@ -499,6 +495,56 @@ paths:
                                                             type: number
                                             status:
                                                 type: string
+                                            total:
+                                                type: number
+                        description: OK
+    /bills/get-all-order:
+            get:
+                tags:
+                  - "Bill"
+                description: Get all order for admin
+                parameters:
+                    - name: Authorization
+                      in: header
+                      required: true
+                      schema:
+                        type: string
+                      description: Basic Auth credentials in the format 'Basic {Base64 of username:password}'
+                    - name: idRestaurant
+                      in: query
+                      required: true
+                      schema:
+                        type: string
+                responses:
+                    "200":
+                        content:
+                            application/json:
+                                schema:
+                                    type: array
+                                    items:
+                                        type: object
+                                        properties:
+                                            idTable:
+                                                type: string
+                                            nameTable:
+                                                type: string
+                                            idBill:
+                                                type: string
+                                            foodDetails:
+                                                type: array
+                                                items:
+                                                    type: object
+                                                    properties:
+                                                        idFood:
+                                                            type: string
+                                                        name:
+                                                            type: string
+                                                        price:
+                                                            type: number
+                                                        image:
+                                                            type: string
+                                                        quantity:
+                                                            type: number
                                             total:
                                                 type: number
                         description: OK

@@ -61,7 +61,6 @@ public class BillAPI {
 
     private void notifyClients() {
         // Notify clients that the bill for the table has been updated
-        
     }
 
     /**
@@ -116,13 +115,13 @@ public class BillAPI {
         return Response.status(Response.Status.CONFLICT).build();
     }
 
-    // @GET
-    // @Path("/get-all-order")
-    // public Response getAllOrder(@Auth User u, @QueryParam("idRestaurant") String idBill) {
-    //     List<FoodOrderDTO> orders = dao.getAllFoodOrders(idBill);
-    //     if (orders != null) {
-    //         return Response.ok(orders).build();
-    //     }
-    //     return Response.status(Response.Status.NOT_FOUND).build();
-    // }
+    @GET
+    @Path("/get-all-order")
+    public Response getAllOrder(@Auth User u, @QueryParam("idRestaurant") String idRestaurant) {
+        if (u != null) {
+            List<FoodOrderDTO> orders = dao.getAllFoodOrders(idRestaurant);
+            return Response.ok(orders).build();
+        }
+        return Response.status(Response.Status.UNAUTHORIZED).build();
+    }
 }

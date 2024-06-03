@@ -1,5 +1,6 @@
 package restaurant_business_system.db.account;
 
+import org.mindrot.jbcrypt.BCrypt;
 import java.util.Map;
 
 
@@ -44,6 +45,10 @@ public class AccountDAO {
             if(!PhoneNumberHelper.isValidPhoneNumber(account.getPhone())){
                 throw new PhoneNumberException("Phone number invalid");
             }
+            String generatedSecuredPasswordHash = BCrypt.hashpw(account.getPassword(), BCrypt.gensalt(12));
+            System.out.println(generatedSecuredPasswordHash);
+            boolean matched = BCrypt.checkpw(account.getPassword(), generatedSecuredPasswordHash);
+            System.out.println(matched);
 
             handle.createUpdate(
                 "INSERT INTO accounts (id_account, username, password, role, name, phone) VALUES (:idAccount, :username, :password, :role, :name, :phone)")
