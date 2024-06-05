@@ -83,6 +83,16 @@
             <artifactId>dropwizard-jdbi3</artifactId>
             <version>${dropwizard.version}</version>
         </dependency>
+        <dependency>
+    <groupId>com.twilio.sdk</groupId>
+    <artifactId>twilio</artifactId>
+    <version>8.27.0</version>
+</dependency>
+<dependency>
+    <groupId>io.dropwizard</groupId>
+    <artifactId>dropwizard-configuration</artifactId>
+    <version>${dropwizard.version}</version>
+</dependency>
     </dependencies>
 
     <build>
@@ -234,7 +244,7 @@
         <profile>
             <id>java11+</id>
             <activation>
-                <jdk>[11,)</jdk>
+                <jdk>11</jdk>
             </activation>
             <properties>
                 <!--

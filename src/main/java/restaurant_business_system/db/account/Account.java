@@ -3,7 +3,7 @@ package restaurant_business_system.db.account;
 import restaurant_business_system.resources.GenerateID;
 
 public class Account {
-    private String idAccount;
+    private String id;
 
     private String username;
 
@@ -15,15 +15,19 @@ public class Account {
 
     private String phone;
 
+    private String status;
+
+
     /**
      * Constructs a new Account object.
      */
     public Account(String username, String password, String name, String phone) {
-        idAccount = GenerateID.generateUniqueID();
+        this.id = GenerateID.generateUniqueID();
         this.username = username;
         this.password = password;
         this.role = "user";
         this.name = name;
+        this.status = "inactive"; // "active" or "inactive
         this.phone = phone;
     }
 
@@ -31,21 +35,27 @@ public class Account {
         this.username = username;
         this.password = password;
         this.role = role;
-        idAccount = id;
+        this.id = id;
     }
-
+    public Account(String id, String username, String name, String phone, String role) {
+        this.username = username;
+        this.name=name;
+        this.phone = phone;
+        this.role = role;
+        this.id = id;
+    }
     public Account() {}
 
     public Account(String id) {
-        idAccount = id;
+        this.id = id;
     }
 
     public String getId() {
-        return idAccount;
+        return id;
     }
 
     public void setId(String id) {
-        this.idAccount = id;
+        this.id = id;
     }
 
     public String getUsername() {
@@ -72,13 +82,6 @@ public class Account {
         this.role = role;
     }
 
-    public String getIdAccount() {
-        return idAccount;
-    }
-
-    public void setIdAccount(String idAccount) {
-        this.idAccount = idAccount;
-    }
 
     public String getName() {
         return name;
@@ -94,5 +97,13 @@ public class Account {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -45,19 +45,17 @@ public class AccountDAO {
             if(!PhoneNumberHelper.isValidPhoneNumber(account.getPhone())){
                 throw new PhoneNumberException("Phone number invalid");
             }
-            String generatedSecuredPasswordHash = BCrypt.hashpw(account.getPassword(), BCrypt.gensalt(12));
-            System.out.println(generatedSecuredPasswordHash);
-            boolean matched = BCrypt.checkpw(account.getPassword(), generatedSecuredPasswordHash);
-            System.out.println(matched);
+            String passwordHash = BCrypt.hashpw(account.getPassword(), BCrypt.gensalt(12));
 
             handle.createUpdate(
-                "INSERT INTO accounts (id_account, username, password, role, name, phone) VALUES (:idAccount, :username, :password, :role, :name, :phone)")
+                "INSERT INTO accounts (id_account, username, password, role, name, phone, status) VALUES (:idAccount, :username, :password, :role, :name, :phone, :status)")
                 .bind("idAccount", account.getId())
                 .bind("username", account.getUsername())
-                .bind("password", account.getPassword())
+                .bind("password", passwordHash)
                 .bind("role", account.getRole())
                 .bind("name", account.getName())
                 .bind("phone", account.getPhone())
+                .bind("status", account.getStatus())
                 .execute();
         });
         return account;
@@ -83,15 +81,14 @@ public class AccountDAO {
      */
     public Account findByUsernameAndPassword(String username, String password) {
         Map<String, Object> account = jdbi.withHandle(handle -> handle
-                .createQuery("SELECT * FROM accounts WHERE username = :username AND password = :password")
+                .createQuery("SELECT * FROM accounts WHERE username = :username && status = 'active'")
                 .bind("username", username)
-                .bind("password", password)
                 .mapToMap()
                 .findFirst()
-                .orElse(null));
-        if (account != null) {
+                .orElse(null));      
+        if (BCrypt.checkpw(password,(String) account.get("password"))) {
             return new Account((String) account.get("id_account"), (String) account.get("username"),
-                    (String) account.get("password"), (String) account.get("role"));
+                (String) account.get("name"),(String) account.get("phone"), (String) account.get("role"));
         } else {
             return null;
         }

@@ -9,6 +9,8 @@ import org.jdbi.v3.core.Jdbi;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthValueFactoryProvider;
 import io.dropwizard.auth.basic.BasicCredentialAuthFilter;
+import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
+import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;
 import io.dropwizard.core.setup.Environment;
@@ -51,6 +53,12 @@ public class restaurant_business_systemApplication extends Application<Restauran
 
     @Override
     public void initialize(final Bootstrap<RestaurantBusinessSystemConfiguration> bootstrap) {
+                bootstrap.setConfigurationSourceProvider(
+            new SubstitutingSourceProvider(
+                bootstrap.getConfigurationSourceProvider(),
+                new EnvironmentVariableSubstitutor(false)
+            )
+        );
     }
 
     @Override
