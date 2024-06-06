@@ -24,5 +24,13 @@ public class PhoneNumberHelper {
         // if all characters are digits and the length is between 10 and 15, return true
         return true;
     }
+
+    public static String convertToInternationalFormat(String phoneNumber){
+        if(phoneNumber.startsWith("0")){
+            return "+84"+phoneNumber.substring(1);
+        }else{
+            return "+84"+phoneNumber;
+        }
+    }
 }
 

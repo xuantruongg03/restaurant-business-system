@@ -23,6 +23,6 @@ server:
   adminConnectors:
     - type: http
       port: 8083 
-twilio:
-  accountSid: ${ACCOUNT_SID}
-  authToken: ${AUTH_TOKEN}
+# twilio:
+#   accountSid: ${ACCOUNT_SID}
+#   authToken: ${AUTH_TOKEN}

@@ -8,9 +8,6 @@ import jakarta.ws.rs.Path;
 
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import com.twilio.Twilio;
-import com.twilio.rest.api.v2010.account.Message;
-import com.twilio.type.PhoneNumber;
 import jakarta.ws.rs.core.Response;
 import restaurant_business_system.db.account.Account;
 import restaurant_business_system.db.account.AccountDAO;
@@ -20,10 +17,6 @@ import restaurant_business_system.exceptions.PhoneNumberException;
 @Path("/account")
 @Produces(MediaType.APPLICATION_JSON)
 public class AccountAPI {
-    private final String ACCOUNT_SID = System.getenv("ACCOUNT_SID");
-    private final String AUTH_TOKEN = System.getenv("ACCOUNT_TOKEN");
-    private final String PHONE = System.getenv("PHONE");
-
     private AccountDAO dao;
 
     public AccountAPI(AccountDAO dao) {
@@ -66,21 +59,6 @@ public class AccountAPI {
                     .type(MediaType.APPLICATION_JSON)
                     .build();
         }
-    }
-
-    @POST
-    @Path("/sendOTP")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response sendOTP(String phoneNumber){
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-        Message message = Message.creator(
-                new PhoneNumber(phoneNumber), // Số điện thoại nhận
-                new PhoneNumber(PHONE), // Số điện thoại gửi của Twilio
-                "Hello nhan nhan!" // Nội dung tin nhắn
-        ).create();
-
-        message.getSid();
-        return Response.ok("OK").type(MediaType.APPLICATION_JSON).build();
     }
 
     @POST

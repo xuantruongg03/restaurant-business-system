@@ -104,5 +104,15 @@ public class AccountDAO {
             return account != null;
         });
     }
+
+
+    public boolean activeAcount(String phone) {
+        return jdbi.withHandle(handle -> {
+            handle.createUpdate("UPDATE accounts SET status = 'active' WHERE phone = :phone")
+                    .bind("phone", phone)
+                    .execute();
+            return true;
+        });
+    }
 }
     
