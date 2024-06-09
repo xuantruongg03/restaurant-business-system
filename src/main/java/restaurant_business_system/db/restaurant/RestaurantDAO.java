@@ -89,7 +89,6 @@ public class RestaurantDAO{
      * @param id The ID of the restaurant to retrieve.
      * @return The restaurant object with the specified ID.
      */
-    @SqlUpdate("SELECT * FROM restaurants WHERE id_account = :id")
     public List<RestaurantDTO> get(String id) {
         List<Map<String, Object>> result = jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM restaurants WHERE id_account = :id")
                 .bind("id", id)

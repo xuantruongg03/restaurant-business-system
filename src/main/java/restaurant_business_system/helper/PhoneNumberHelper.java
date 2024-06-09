@@ -9,21 +9,30 @@ public class PhoneNumberHelper {
      * @return true if the string is a valid phone number, otherwise false.
      */
     public static boolean isValidPhoneNumber(String s) {
-        // check length string
+        // Kiểm tra xem chuỗi có null hoặc không phù hợp độ dài không
         if (s == null || s.length() < 10 || s.length() > 15) {
             return false;
         }
-
-        // check all characters in the string are digits
-        for (int i = 0; i < s.length(); i++) {
+    
+        // Bắt đầu kiểm tra từ ký tự đầu tiên
+        int start = 0;
+    
+        // Nếu số điện thoại bắt đầu bằng dấu '+', bỏ qua ký tự đó
+        if (s.startsWith("+")) {
+            start = 1;
+        }
+    
+        // Kiểm tra tất cả các ký tự còn lại phải là chữ số
+        for (int i = start; i < s.length(); i++) {
             if (!Character.isDigit(s.charAt(i))) {
                 return false;
             }
         }
-
-        // if all characters are digits and the length is between 10 and 15, return true
+    
+        // Nếu tất cả các ký tự là chữ số (và có thể có một dấu '+' ở đầu), trả về true
         return true;
     }
+    
 
     public static String convertToInternationalFormat(String phoneNumber){
         if(phoneNumber.startsWith("0")){

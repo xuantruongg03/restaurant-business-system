@@ -10,14 +10,24 @@ public class OTPDAO {
     }
 
     public boolean create(OTP otp){
-        jdbi.useHandle(handle->{
-            handle.createUpdate("Insert into otps(phone, otp_code) values (?, ?)")
+        try {
+            // Sử dụng 'withHandle' để tự động đóng handle sau khi sử dụng
+            int result = jdbi.withHandle(handle -> 
+                handle.createUpdate("INSERT INTO otps(phone, otp_code) VALUES (?, ?)")
                     .bind(0, otp.getPhone())
                     .bind(1, otp.getOtp_code())
-                    .execute();
-        });
-        return false;
+                    .execute()
+            );
+    
+            // 'execute' trả về số hàng bị ảnh hưởng, nếu lớn hơn 0 tức là chèn thành công
+            return result > 0;
+        } catch (Exception e) {
+            // Log lỗi để dễ dàng theo dõi và khắc phục
+            System.err.println("Error inserting OTP: " + e.getMessage());
+            return false;
+        }
     }
+    
     public boolean checkOTP(OTP otp) {
         return jdbi.withHandle(handle -> {
             int updated = handle.createUpdate("UPDATE otps SET used = 1 WHERE phone = :phone AND otp_code = :otpCode")

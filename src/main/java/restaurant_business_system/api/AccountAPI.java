@@ -13,6 +13,7 @@ import restaurant_business_system.db.account.Account;
 import restaurant_business_system.db.account.AccountDAO;
 import restaurant_business_system.exceptions.AccountException;
 import restaurant_business_system.exceptions.PhoneNumberException;
+import restaurant_business_system.response.ApiResponse;
 
 @Path("/account")
 @Produces(MediaType.APPLICATION_JSON)
@@ -39,7 +40,8 @@ public class AccountAPI {
             Account a = new Account(account.getUsername(), account.getPassword(), account.getName(),
                     account.getPhone());
             dao.create(a);
-            return Response.ok("OK").type(MediaType.APPLICATION_JSON).build();
+            ApiResponse apiResponse = new ApiResponse(true, "Operation succeeded");
+        return Response.ok(apiResponse).build();
         } catch (AccountException e) {
             // Account already exists
             return Response.status(Response.Status.CONFLICT)
@@ -67,7 +69,7 @@ public class AccountAPI {
     public Response login(Account a) {
         Account account = dao.findByUsernameAndPassword(a.getUsername(), a.getPassword());
         if (account != null) {
-            return Response.ok(account).type(MediaType.APPLICATION_JSON).build();
+            return Response.ok(account).build();
         } else {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }

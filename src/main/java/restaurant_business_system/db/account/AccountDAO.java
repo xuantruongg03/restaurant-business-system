@@ -85,7 +85,10 @@ public class AccountDAO {
                 .bind("username", username)
                 .mapToMap()
                 .findFirst()
-                .orElse(null));      
+                .orElse(null));
+        if(account == null) {
+            return null;
+        }
         if (BCrypt.checkpw(password,(String) account.get("password"))) {
             return new Account((String) account.get("id_account"), (String) account.get("username"),
                 (String) account.get("name"),(String) account.get("phone"), (String) account.get("role"));

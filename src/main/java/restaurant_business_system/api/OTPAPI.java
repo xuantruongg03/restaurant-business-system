@@ -15,6 +15,7 @@ import restaurant_business_system.db.otp.OTP;
 import restaurant_business_system.db.otp.OTPDAO;
 import restaurant_business_system.db.otp.PhoneNumberRequest;
 import restaurant_business_system.helper.OTPHelper;
+import restaurant_business_system.response.ApiResponse;
 import io.github.cdimascio.dotenv.Dotenv;
 
 
@@ -43,15 +44,16 @@ public class OTPAPI {
             Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
             String code_otp = OTPHelper.generateOTP(5);
             Message message = Message.creator(
-                    new PhoneNumber(request.getPhoneNumber()), // Số điện thoại nhận
+                    new PhoneNumber(request.getPhone()), // Số điện thoại nhận
                     new PhoneNumber(PHONE), // Số điện thoại gửi của Twilio
                     "Your OTP code is: " + code_otp  // Nội dung tin nhắn
             ).create();
             message.getSid();
-            // if(otpDao.create(new OTP(request.getPhoneNumber() , code_otp))){
-                return Response.ok("OK").type(MediaType.APPLICATION_JSON).build();
-            // }
-            // return Response.status(Response.Status.BAD_REQUEST).entity("{\"error\":\"Failed to send OTP.\"}").build();
+            if(otpDao.create(new OTP(request.getPhone() , code_otp))){
+                ApiResponse apiResponse = new ApiResponse(true, "Operation succeeded");
+                return Response.ok(apiResponse).build();
+            }
+            return Response.status(Response.Status.BAD_REQUEST).entity("{\"error\":\"Failed to send OTP.\"}").build();
         } catch (Exception e) {
             System.err.println(e);
             return Response.status(Response.Status.BAD_REQUEST).entity("{\"error\":\"Failed to send OTP.\"}").build();
@@ -63,7 +65,7 @@ public class OTPAPI {
     @Produces(MediaType.APPLICATION_JSON)
     public Response activeOTP(OTP otp){
         try {
-            if(OTPHelper.isOTP(otp.getOtp_code())){
+            if(!OTPHelper.isOTP(otp.getOtp_code())){
                 return Response.status(Response.Status.BAD_REQUEST)
                         .entity("Invalid OTP")
                         .type(MediaType.APPLICATION_JSON)
@@ -72,8 +74,10 @@ public class OTPAPI {
             // Check OTP
             if(otpDao.checkOTP(otp)){
                 if(accountDao.activeAcount(otp.getPhone())){
-                    return Response.ok("OK").type(MediaType.APPLICATION_JSON).build();
+                    ApiResponse apiResponse = new ApiResponse(true, "Operation succeeded");
+                return Response.ok(apiResponse).build();
                 }
+                System.out.println("12312313");
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .type(MediaType.APPLICATION_JSON)
                 .build();
@@ -84,6 +88,8 @@ public class OTPAPI {
                             .build();
             
         } catch (Exception e) {
+
+            System.out.println(e);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
             .type(MediaType.APPLICATION_JSON)
             .build();
@@ -96,7 +102,8 @@ public class OTPAPI {
     public Response checkOTP(OTP otp){
         try {
             if(otpDao.checkOTP(otp)){
-                return Response.ok("OK").type(MediaType.APPLICATION_JSON).build();
+                ApiResponse apiResponse = new ApiResponse(true, "Operation succeeded");
+        return Response.ok(apiResponse).build();
             }
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
             .type(MediaType.APPLICATION_JSON)
