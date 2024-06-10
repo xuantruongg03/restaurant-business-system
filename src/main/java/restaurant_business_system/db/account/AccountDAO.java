@@ -107,7 +107,6 @@ public class AccountDAO {
         });
     }
 
-
     public boolean activeAcount(String phone) {
         return jdbi.withHandle(handle -> {
             handle.createUpdate("UPDATE accounts SET status = 'active' WHERE phone = :phone")
@@ -115,6 +114,23 @@ public class AccountDAO {
                     .execute();
             return true;
         });
+    }
+
+    public boolean updateProfile(AccountEdit a) {
+        try {
+            return jdbi.withHandle(h -> {
+                h.createUpdate("UPDATE account set name = :name, avt = :avt, birthdate = :birthDate where id_account = :idAccount")
+                    .bind("name", a.getName())
+                    .bind("avt", a.getAvt())
+                    .bind("birthDate", a.getBirthDate())
+                    .bind("idAccount", a.getIdAccount())
+                    .execute();
+                return true;
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
     

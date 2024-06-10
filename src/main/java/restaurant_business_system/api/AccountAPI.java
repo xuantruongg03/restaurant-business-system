@@ -2,13 +2,16 @@ package restaurant_business_system.api;
 
 import java.util.Collections;
 
+import io.dropwizard.auth.Auth;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import restaurant_business_system.core.User;
 import restaurant_business_system.db.account.Account;
 import restaurant_business_system.db.account.AccountDAO;
+import restaurant_business_system.db.account.AccountEdit;
 import restaurant_business_system.exception.AccountException;
 import restaurant_business_system.exception.PhoneNumberException;
 import restaurant_business_system.response.ApiResponse;
@@ -68,6 +71,20 @@ public class AccountAPI {
         Account account = dao.findByUsernameAndPassword(a.getUsername(), a.getPassword());
         if (account != null) {
             return Response.ok(account).build();
+        } else {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
+    }
+
+    @POST
+    @Path("update")
+    public Response edit(@Auth User u, AccountEdit a) {
+        if (u != null) {
+            boolean rs = dao.updateProfile(a);
+            if(rs) {
+                return Response.ok("OK").build();
+            }
+            return Response.status(Response.Status.EXPECTATION_FAILED).build();
         } else {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }

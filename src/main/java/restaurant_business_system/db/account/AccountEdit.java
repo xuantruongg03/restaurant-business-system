@@ -1,31 +1,31 @@
 package restaurant_business_system.db.account;
 
 public class AccountEdit {
+    private String idAccount;
     private String name;
-    private String numberPhone;
     private String birthDate;
-    private String email;
+    private String avt;
 
-    public AccountEdit (String name, String numberPhone, String birthDate, String email) {
+    public AccountEdit (String idAccount, String name, String avt, String birthDate) {
+        this.idAccount = idAccount;
         this.name =  name;
-        this.numberPhone = numberPhone;
         this.birthDate = birthDate;
-        this.email = email;
+        this.avt = avt;
     }
 
     public String getName () {
         return this.name;
     }
 
-    public String getNumberPhone () {
-        return this.numberPhone;
+    public String getAvt () {
+        return this.avt;
     }
 
     public String getBirthDate () {
         return this.birthDate;
     }
 
-    public String getEmail () {
-        return this.email;
+    public String getIdAccount () {
+        return idAccount;
     }
 }
