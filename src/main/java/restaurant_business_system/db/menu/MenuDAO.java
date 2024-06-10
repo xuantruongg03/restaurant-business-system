@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.jdbi.v3.core.Jdbi;
-import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 import jakarta.ws.rs.ForbiddenException;
 
@@ -31,7 +30,6 @@ public class MenuDAO {
      * @param menu the menu object to be created
      * @return the created menu object
      */
-    @SqlUpdate("INSERT INTO menus (id_menu, name, id_restaurant, status) VALUES (:idMenu, :name, :idRestaurant, :status)")
     public Menu create(Menu menu) {
         jdbi.useHandle(handle -> handle.createUpdate("INSERT INTO menus (id_menu, name, id_restaurant, status) VALUES (:idMenu, :name, :idRestaurant, :status)")
                 .bind("idMenu", menu.getIdMenu())
@@ -69,7 +67,6 @@ public class MenuDAO {
      * @param menu the menu object to be updated
      * @return the updated menu object
      */
-    @SqlUpdate("UPDATE menus SET name = :name WHERE id_menu = :idMenu AND id_restaurant = :idRestaurant")
     public Menu update(Menu menu, String idAccount) {
         jdbi.useHandle(handle -> {
             //Check if the menu belongs to the account
@@ -91,7 +88,6 @@ public class MenuDAO {
      *
      * @param idMenu the ID of the menu to be deleted
      */
-    @SqlUpdate("Update menus set status = 'inactive' WHERE id_menu = :idMenu")
     public void delete(String idMenu, String idAccount) {
         jdbi.useHandle(handle -> {
             //Get id_restaurant from id_menu
@@ -125,7 +121,6 @@ public class MenuDAO {
     /**
      * Deletes all menus from the database.
      */
-    @SqlUpdate("DELETE FROM menus")
     public void deleteAll() {
         jdbi.useHandle(handle -> handle.createUpdate("DELETE FROM menus").execute());
     }
@@ -136,7 +131,6 @@ public class MenuDAO {
      * @param idRestaurant the ID of the menu to get
      * @return the menu object
      */
-    @SqlUpdate("SELECT * FROM menus WHERE id_restaurant = :idRestaurant AND status = 'Active'")
     public List<MenuDTO> get(String idRestaurant) {
         List<Map<String, Object>> menus = jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM menus WHERE id_restaurant = :idRestaurant AND status = 'Active'")
                 .bind("idRestaurant", idRestaurant)

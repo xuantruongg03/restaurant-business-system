@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.jdbi.v3.core.Jdbi;
-import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 /**
  * The RestaurantDAO class provides methods to interact with the database for restaurant-related operations.
@@ -26,7 +25,6 @@ public class RestaurantDAO{
      * @param restaurant The restaurant object to create.
      * @return The created restaurant object.
      */
-    @SqlUpdate("INSERT INTO restaurants (id_restaurant, name, id_account, status) VALUES (:idRestaurant, :name, :idAccount, :status)")
     public Restaurant create(Restaurant restaurant) {
         jdbi.useHandle(handle -> handle.createUpdate("INSERT INTO restaurants (id_restaurant, name, id_account, status) VALUES (:idRestaurant, :name, :idAccount, :status)")
                 .bind("idRestaurant", restaurant.getIdRestaurant())
@@ -73,7 +71,6 @@ public class RestaurantDAO{
      * @param restaurant The restaurant object to update.
      * @return The updated restaurant object.
      */
-    @SqlUpdate("UPDATE restaurants SET name = :name WHERE id_restaurant = :id")
     public Restaurant updateName(Restaurant restaurant) {
         jdbi.useHandle(handle -> handle.createUpdate("UPDATE restaurants SET name = :name WHERE id_restaurant = :id")
                 .bind("id", restaurant.getIdRestaurant())
@@ -89,7 +86,6 @@ public class RestaurantDAO{
      * @param id The ID of the restaurant to retrieve.
      * @return The restaurant object with the specified ID.
      */
-    @SqlUpdate("SELECT * FROM restaurants WHERE id_account = :id")
     public List<RestaurantDTO> get(String id) {
         List<Map<String, Object>> result = jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM restaurants WHERE id_account = :id")
                 .bind("id", id)

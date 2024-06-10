@@ -11,7 +11,3 @@ Health Check
 ---
 
 To see your applications health enter url `http://localhost:8081/healthcheck`
-
-
-Quet ma --> Tao bill
-1 Bill nhieu mon

@@ -65,7 +65,6 @@ public class FoodDAO {
      * @param food the food object to be created
      * @return the created food object
      */
-    @SqlUpdate("INSERT INTO foods (id_food, id_menu, name, price, image) VALUES (:idFood, :idMenu, :name, :price, :image)")
     public Food create(Food food, String idAccount) {
         LOOGER.info("Creating food with ID: " + food.getIdFood() + " in menu with ID: " + food.getIdMenu()
                 + " for account with ID: " + idAccount);
@@ -93,7 +92,6 @@ public class FoodDAO {
      * @param food the food object to be updated
      * @return the updated food object
      */
-    @SqlUpdate("UPDATE foods SET name = :name, price = :price, image = :image WHERE id_food = :idFood")
     public Food update(Food food, String idAccount) {
         // Check if the user is the owner of the menu
         if (!isOwner(food.getIdMenu(), idAccount)) {
@@ -118,7 +116,6 @@ public class FoodDAO {
      *
      * @param food the food object to be deleted
      */
-    @SqlUpdate("DELETE FROM foods WHERE id_food = :idFood")
     public void delete(String idFood, String idAccount) {
         jdbi.useHandle(handle -> {
             // Get the menu ID from the food ID
@@ -165,10 +162,9 @@ public class FoodDAO {
      * @param idMenu the ID of the menu
      * @return a list of FoodDTO objects representing the foods
      */
-    @SqlUpdate("SELECT * FROM foods WHERE id_menu = :idMenu")
     public List<FoodDTO> findByMenu(String idMenu) {
         List<Map<String, Object>> results = jdbi
-                .withHandle(handle -> handle.createQuery("SELECT * FROM foods WHERE id_menu = :idMenu")
+                .withHandle(handle -> handle.createQuery("SELECT * FROM foods WHERE id_menu = :idMenu and (select status from menus where id_menu = :idMenu) = 'active'")
                         .bind("idMenu", idMenu)
                         .mapToMap()
                         .list());
@@ -187,7 +183,6 @@ public class FoodDAO {
      * @param idFood the ID of the food
      * @return the FoodDTO object representing the food
      */
-    @SqlUpdate("SELECT id_food, name, price, image FROM foods WHERE id_food = :idFood")
     public FoodDTO findById(String idFood) {
         List<Map<String, Object>> resultList = jdbi.withHandle(
                 handle -> handle.createQuery("SELECT id_food, name, price, image FROM foods WHERE id_food = :idFood")

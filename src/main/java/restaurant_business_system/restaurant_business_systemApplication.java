@@ -22,6 +22,7 @@ import restaurant_business_system.api.BillAPI;
 import restaurant_business_system.api.FoodApi;
 import restaurant_business_system.api.MenuAPI;
 import restaurant_business_system.api.RestaurantAPI;
+import restaurant_business_system.api.SocketAPI;
 import restaurant_business_system.api.TableAPI;
 import restaurant_business_system.auth.BasicAuthenticator;
 import restaurant_business_system.core.User;
@@ -68,6 +69,7 @@ public class restaurant_business_systemApplication extends Application<Restauran
         e.jersey().register(new FoodApi(new FoodDAO(jdbi)));
         e.jersey().register(new TableAPI(new TableDAO(jdbi)));
         e.jersey().register(new BillAPI(new BillDAO(jdbi)));
+        e.jersey().register(new SocketAPI());
 
         // Auth
         e.jersey().register(new AuthDynamicFeature(
@@ -89,6 +91,7 @@ public class restaurant_business_systemApplication extends Application<Restauran
 
         // Add URL mapping
         cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
+        
     }
 
 }
