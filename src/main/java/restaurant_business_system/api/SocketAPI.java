@@ -1,7 +1,6 @@
 package restaurant_business_system.api;
 
 import java.io.IOException;
-import java.util.Map;
 
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;

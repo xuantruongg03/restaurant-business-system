@@ -17,7 +17,7 @@ public class Account {
 
     private String status;
 
-
+    private String idRestaurant = null;
     /**
      * Constructs a new Account object.
      */
@@ -31,12 +31,17 @@ public class Account {
         this.phone = phone;
     }
 
-    public Account(String id, String username, String password,String name, String phone, String role) {
+    public Account(String username, String password, String name, String phone, String role, String idRestaurant) {
+        this.id = GenerateID.generateUniqueID();
         this.username = username;
         this.password = password;
-        this.role = role;
-        this.id = id;
+        this.role = "employee";
+        this.name = name;
+        this.status = "inactive"; // "active" or "inactive
+        this.phone = phone;
+        this.idRestaurant = idRestaurant;
     }
+
     public Account(String id, String username, String name, String phone, String role) {
         this.username = username;
         this.name=name;
@@ -105,5 +110,9 @@ public class Account {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getIdRestaurant() {
+        return idRestaurant;
     }
 }

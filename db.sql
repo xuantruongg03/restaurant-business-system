@@ -24,13 +24,17 @@ DROP TABLE IF EXISTS `accounts`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `accounts` (
   `id_account` varchar(10) NOT NULL,
+  `idRestaurant` varchar(10) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` varchar(10) NOT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `birthdate` varchar(255) DEFAULT NULL,
+  `avt` text,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(255) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_account`),
   UNIQUE KEY `phone` (`phone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -42,7 +46,7 @@ CREATE TABLE `accounts` (
 
 LOCK TABLES `accounts` WRITE;
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES ('P3B2H66I1M','abc','123','manager','2024-04-28 13:58:09','2024-05-02 09:08:31',NULL,NULL),('VQ6WABOR10','abcd','123','user','2024-04-29 14:08:13','2024-04-29 14:08:13',NULL,NULL);
+INSERT INTO `accounts` VALUES ('3HQ5954YN0','ZDZ749Q9G4','abcde','$2a$12$hdXs14noGSxW3e3TNWtUEOjqUsIdMBBQNu.qG9Wz69.7.cWxd9qYa','ma','active','0981793201','A',NULL,NULL,'2024-06-10 17:26:29','2024-06-11 10:30:50'),('P3B2H66I1M','','abc','123','manager',NULL,NULL,NULL,NULL,'https://res.cloudinary.com/dcweof28t/image/upload/v1717145213/oprivsmvzyzhhieekktr.png','2024-04-28 13:58:09','2024-06-10 11:40:32'),('VQ6WABOR10','','abcd','123','user',NULL,NULL,NULL,NULL,NULL,'2024-04-29 14:08:13','2024-04-29 14:08:13');
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,7 +106,7 @@ CREATE TABLE `foods` (
 
 LOCK TABLES `foods` WRITE;
 /*!40000 ALTER TABLE `foods` DISABLE KEYS */;
-INSERT INTO `foods` VALUES ('OIV0TS6836','T2CCWHNW87','Gà rán','http://res.cloudinary.com/dcweof28t/image/upload/v1717045594/zp7klmys9dityebo10n1.png',160000,'2024-04-29 15:28:21','2024-05-30 12:17:03');
+INSERT INTO `foods` VALUES ('OIV0TS6836','T2CCWHNW87','Gà rán','http://res.cloudinary.com/dcweof28t/image/upload/v1717045594/zp7klmys9dityebo10n1.png',160000,'2024-04-29 15:28:21','2024-05-30 12:17:03'),('UPQD629O5T','EQ06P6RO30','a','https://res.cloudinary.com/dcweof28t/image/upload/v1717146254/lrt9b5xioe1wskbizypm.png',0,'2024-06-10 18:04:50','2024-06-10 18:04:50');
 /*!40000 ALTER TABLE `foods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +136,7 @@ CREATE TABLE `menus` (
 
 LOCK TABLES `menus` WRITE;
 /*!40000 ALTER TABLE `menus` DISABLE KEYS */;
-INSERT INTO `menus` VALUES ('5S21ONQ2BC','0UDUVYE7SM','A','inactive','2024-06-01 09:16:57','2024-06-01 09:17:10'),('91BFAKN5VM','0UDUVYE7SM','VIP','Active','2024-06-01 08:19:43','2024-06-01 09:37:16'),('E0RIIPLOHU','0UDUVYE7SM','A','inactive','2024-06-01 09:38:08','2024-06-01 09:40:03'),('T2CCWHNW87','0UDUVYE7SM','D','inactive','2024-04-29 14:31:49','2024-06-01 09:15:16');
+INSERT INTO `menus` VALUES ('5S21ONQ2BC','0UDUVYE7SM','A','inactive','2024-06-01 09:16:57','2024-06-01 09:17:10'),('91BFAKN5VM','0UDUVYE7SM','VIP','Active','2024-06-01 08:19:43','2024-06-01 09:37:16'),('E0RIIPLOHU','0UDUVYE7SM','A','inactive','2024-06-01 09:38:08','2024-06-01 09:40:03'),('EQ06P6RO30','ZDZ749Q9G4','VIP','active','2024-06-10 18:00:24','2024-06-10 18:00:24'),('T2CCWHNW87','0UDUVYE7SM','D','active','2024-04-29 14:31:49','2024-06-09 09:31:30'),('TT6YMX6DMF','0UDUVYE7SM','VIP 2','active','2024-06-02 13:55:07','2024-06-02 13:55:07');
 /*!40000 ALTER TABLE `menus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,6 +153,8 @@ CREATE TABLE `orders` (
   `id_food` varchar(10) NOT NULL,
   `quantity` int NOT NULL,
   `status` varchar(255) NOT NULL,
+  `payment` varchar(255) DEFAULT 'Not Paid',
+  `code` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_order`),
@@ -165,7 +171,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES ('XHS84GJP6K','FOEGKYGU7J','OIV0TS6836',1,'Processing','2024-04-30 17:20:22','2024-04-30 17:20:22');
+INSERT INTO `orders` VALUES ('3HW2OPQX7M','FOEGKYGU7J','OIV0TS6836',2,'Processing','Not Paid','BRSB8A5GCW','2024-06-10 09:55:46','2024-06-10 09:55:46'),('CU0VW65E4T','FOEGKYGU7J','OIV0TS6836',25,'Processing','Not Paid','7VAK8CKM1K','2024-06-09 16:37:48','2024-06-09 16:37:48'),('EQLISBNSA9','FOEGKYGU7J','OIV0TS6836',20,'Processing','Not Paid','8XKSPYADHM','2024-06-09 16:37:25','2024-06-09 16:37:25'),('EV0H22KVBS','FOEGKYGU7J','OIV0TS6836',1,'Processing','Paid','Y2SCOOWCUL','2024-06-09 16:31:31','2024-06-09 16:33:30'),('M7TS59HVHB','FOEGKYGU7J','OIV0TS6836',10,'Processing','Not Paid','WP4P2WNKQC','2024-06-10 09:54:58','2024-06-10 09:54:59');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,14 +184,11 @@ DROP TABLE IF EXISTS `restaurants`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `restaurants` (
   `id_restaurant` varchar(10) NOT NULL,
-  `id_account` varchar(10) NOT NULL,
   `name` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_restaurant`),
-  KEY `id_account` (`id_account`),
-  CONSTRAINT `restaurants_ibfk_1` FOREIGN KEY (`id_account`) REFERENCES `accounts` (`id_account`)
+  PRIMARY KEY (`id_restaurant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -195,7 +198,7 @@ CREATE TABLE `restaurants` (
 
 LOCK TABLES `restaurants` WRITE;
 /*!40000 ALTER TABLE `restaurants` DISABLE KEYS */;
-INSERT INTO `restaurants` VALUES ('0UDUVYE7SM','P3B2H66I1M','a','active','2024-04-29 10:46:37','2024-04-29 10:46:37'),('WSJ370SFR9','P3B2H66I1M','b','active','2024-04-29 10:48:28','2024-04-29 10:48:28');
+INSERT INTO `restaurants` VALUES ('0UDUVYE7SM','a','active','2024-04-29 10:46:37','2024-04-29 10:46:37'),('WSJ370SFR9','b','active','2024-04-29 10:48:28','2024-04-29 10:48:28'),('ZDZ749Q9G4','A','active','2024-06-10 17:38:49','2024-06-10 17:38:49');
 /*!40000 ALTER TABLE `restaurants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,7 +228,7 @@ CREATE TABLE `tables` (
 
 LOCK TABLES `tables` WRITE;
 /*!40000 ALTER TABLE `tables` DISABLE KEYS */;
-INSERT INTO `tables` VALUES ('98AFF73GPT','0UDUVYE7SM','Mơ ước','Available','2024-04-30 09:40:10','2024-05-27 18:20:27'),('M6BAP3T3ZT','0UDUVYE7SM','Bàn 1','Available','2024-05-28 09:08:11','2024-05-28 09:08:11');
+INSERT INTO `tables` VALUES ('3UOXSITD8M','ZDZ749Q9G4','Bàn 1','Available','2024-06-10 17:39:37','2024-06-10 17:39:37'),('98AFF73GPT','0UDUVYE7SM','Mơ ước','Available','2024-04-30 09:40:10','2024-05-27 18:20:27'),('M6BAP3T3ZT','0UDUVYE7SM','Bàn 1','Available','2024-05-28 09:08:11','2024-05-28 09:08:11');
 /*!40000 ALTER TABLE `tables` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -238,4 +241,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-02 11:10:47
+-- Dump completed on 2024-06-11 10:41:23

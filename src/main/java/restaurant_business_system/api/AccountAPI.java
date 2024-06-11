@@ -6,11 +6,13 @@ import io.dropwizard.auth.Auth;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import restaurant_business_system.core.User;
 import restaurant_business_system.db.account.Account;
 import restaurant_business_system.db.account.AccountDAO;
+import restaurant_business_system.db.account.AccountDTO;
 import restaurant_business_system.db.account.AccountEdit;
 import restaurant_business_system.exception.AccountException;
 import restaurant_business_system.exception.PhoneNumberException;
@@ -68,7 +70,7 @@ public class AccountAPI {
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(Account a) {
-        Account account = dao.findByUsernameAndPassword(a.getUsername(), a.getPassword());
+        AccountDTO account = dao.findByUsernameAndPassword(a.getUsername(), a.getPassword());
         if (account != null) {
             return Response.ok(account).build();
         } else {
@@ -90,4 +92,17 @@ public class AccountAPI {
         }
     }
 
+    @POST
+    @Path("create-employee")
+    public Response createEmployee(@Auth User u, Account a) {
+        if (u != null) {
+            Account rs = dao.create(a);
+            if(rs != null) {
+                return Response.ok("OK").build();
+            }
+            return Response.status(Response.Status.EXPECTATION_FAILED).build();
+        } else {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
+    }
 }

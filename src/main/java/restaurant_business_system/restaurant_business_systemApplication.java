@@ -23,7 +23,6 @@ import restaurant_business_system.api.FoodApi;
 import restaurant_business_system.api.MenuAPI;
 import restaurant_business_system.api.OTPAPI;
 import restaurant_business_system.api.RestaurantAPI;
-import restaurant_business_system.api.SocketAPI;
 import restaurant_business_system.api.TableAPI;
 import restaurant_business_system.auth.BasicAuthenticator;
 import restaurant_business_system.core.User;

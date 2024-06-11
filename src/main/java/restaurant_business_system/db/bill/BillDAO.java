@@ -198,6 +198,22 @@ public class BillDAO {
             if(quantity <= 0)
                     return null;
 
+            // Check if the food exists in bill ==> + quantity
+            List<Map<String, Object>> results = handle.createQuery("SELECT * FROM orders WHERE id_bill = :idBill and id_food = :idFood and payment = 'Not Paid'")
+                    .bind("idBill", idBill)
+                    .bind("idFood", idFood)
+                    .mapToMap()
+                    .list();
+            if (!results.isEmpty()) {
+                int oldQuantity = (int) results.get(0).get("quantity");
+                handle.createUpdate("UPDATE orders SET quantity = :quantity WHERE id_bill = :idBill and id_food = :idFood and payment = 'Not Paid'")
+                        .bind("quantity", oldQuantity + quantity)
+                        .bind("idBill", idBill)
+                        .bind("idFood", idFood)
+                        .execute();
+                return null;
+            }
+
             // Add the order to the database
             Order order = new Order(idBill, idFood, quantity);
             handle.createUpdate(

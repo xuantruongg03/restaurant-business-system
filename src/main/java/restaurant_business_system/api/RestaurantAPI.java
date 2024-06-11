@@ -46,20 +46,6 @@ public class RestaurantAPI {
         return Response.status(Response.Status.UNAUTHORIZED).build();
     }
 
-    /**
-     * Retrieves the restaurant associated with the authenticated user.
-     *
-     * @param u The authenticated user.
-     * @return A response containing the restaurant information.
-     */
-    @GET
-    @Path("/get")
-    public Response getRestaurant(@Auth User u) {
-        if (u != null) {
-            return Response.ok(dao.get(u.getId())).build();
-        }
-        return Response.status(Response.Status.UNAUTHORIZED).build();
-    }
 
     /**
      * Updates the name of a restaurant.
