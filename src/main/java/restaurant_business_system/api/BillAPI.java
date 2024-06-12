@@ -239,9 +239,12 @@ public class BillAPI {
             if(payment == null) {
                 return Response.status(Response.Status.NOT_FOUND).build();
             }
+            // Logger LOGGER = LoggerFactory.getLogger(BillAPI.class);
+            // LOGGER.info("Payment: " + payment.toString());
             String partnerCode = "MOMO";
-            String desUrl = "http://localhost:8082/bills/complete-payment-food?idOrder=" + idOrder + "&code=" + payment.getCode();
-            String desc = "Thanh toan mon an \nTen mon: " + payment.getNameFood() + "\nSo luong: " + payment.getQuantity();
+            String desUrl = "http://localhost:8082/bills/complete-payment-food?idOrder=" + idOrder + "&code=" + payment.getCode() + "&idFood=" + payment.getIdFood();
+            // String desc = "Thanh toan mon an \nTen mon: " + payment.getNameFood() + "\nSo luong: " + payment.getQuantity();
+            String desc = "Hello";
             String payUrl = createMethodPayment(payment.getPrice(), partnerCode, desUrl, desc);
             if(payUrl != null && !payUrl.isEmpty()) {
                 Url url = new Url(payUrl);
@@ -256,13 +259,9 @@ public class BillAPI {
 
     @GET
     @Path("complete-payment-food")
-    public Response completePaymentFood(@QueryParam("idOrder") String idOrder, @QueryParam("code") String code, @QueryParam("resultCode") String resultCode) {
-        // Logger LOGGER = LoggerFactory.getLogger(BillAPI.class);
-        // LOGGER.info("idOrder: " + idOrder);
-        // LOGGER.info("code: " + code);
-        // LOGGER.info("resultCode: " + resultCode);
+    public Response completePaymentFood(@QueryParam("idOrder") String idOrder, @QueryParam("code") String code, @QueryParam("resultCode") String resultCode, @QueryParam("idFood") String idFood){
         if(idOrder != null && code != null && resultCode.equals("0")) {
-            boolean rs = dao.completePaymentFood(idOrder, code);
+            boolean rs = dao.completePaymentFood(idOrder, code, idFood);
             if(rs) {
                 return Response.ok("Thanh toan thanh cong! Vui long quay tro lai trang truoc.").build();
             }

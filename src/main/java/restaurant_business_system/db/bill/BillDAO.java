@@ -150,7 +150,8 @@ public class BillDAO {
 
     private boolean checkBillExist(String idBill) {
         return jdbi.withHandle(handle -> {
-            List<Map<String, Object>> results = handle.createQuery("SELECT * FROM bills WHERE id_bill = :idBill and status = 'Open'")
+            List<Map<String, Object>> results = handle
+                    .createQuery("SELECT * FROM bills WHERE id_bill = :idBill and status = 'Open'")
                     .bind("idBill", idBill)
                     .mapToMap()
                     .list();
@@ -195,24 +196,8 @@ public class BillDAO {
                 return null;
 
             // Check if the quantity is valid
-            if(quantity <= 0)
-                    return null;
-
-            // Check if the food exists in bill ==> + quantity
-            List<Map<String, Object>> results = handle.createQuery("SELECT * FROM orders WHERE id_bill = :idBill and id_food = :idFood and payment = 'Not Paid'")
-                    .bind("idBill", idBill)
-                    .bind("idFood", idFood)
-                    .mapToMap()
-                    .list();
-            if (!results.isEmpty()) {
-                int oldQuantity = (int) results.get(0).get("quantity");
-                handle.createUpdate("UPDATE orders SET quantity = :quantity WHERE id_bill = :idBill and id_food = :idFood and payment = 'Not Paid'")
-                        .bind("quantity", oldQuantity + quantity)
-                        .bind("idBill", idBill)
-                        .bind("idFood", idFood)
-                        .execute();
+            if (quantity <= 0)
                 return null;
-            }
 
             // Add the order to the database
             Order order = new Order(idBill, idFood, quantity);
@@ -225,7 +210,8 @@ public class BillDAO {
                     .bind("status", order.getStatus())
                     .execute();
 
-            String nameTable = handle.createQuery("SELECT name_table from tables where id_table = (SELECT id_table from bills where id_bill = :idBill)")
+            String nameTable = handle.createQuery(
+                    "SELECT name_table from tables where id_table = (SELECT id_table from bills where id_bill = :idBill)")
                     .bind("idBill", idBill)
                     .mapTo(String.class)
                     .one();
@@ -233,32 +219,33 @@ public class BillDAO {
             return new OrderReturn(nameTable, order.getIdOrder());
         });
     }
+
     /**
      * 
      * @param idRestaurant
      * @return List<FoodOrderDTO>
      *         [
-        *         {
-                      idTable: "1",
-            *         idBill: "1",
-            *         foods: [
-                        *         {
-                            *         idFood: "1",
-                            *         name: "Bún bò Huế",
-                            *         image: "bunbohue.jpg"
-                                      quantity: 2,
-                                      price: 50000
-                        *         },
-                        *         {
-                            *         idFood: "2",
-                            *         name: "Bún riêu",
-                            *         image: "bunrieu.jpg"
-                                      quantity: 1,
-                                      price: 40000
-                        *         }
-        *                  ]
-        *         total: 140000
-        *         }
+     *         {
+     *         idTable: "1",
+     *         idBill: "1",
+     *         foods: [
+     *         {
+     *         idFood: "1",
+     *         name: "Bún bò Huế",
+     *         image: "bunbohue.jpg"
+     *         quantity: 2,
+     *         price: 50000
+     *         },
+     *         {
+     *         idFood: "2",
+     *         name: "Bún riêu",
+     *         image: "bunrieu.jpg"
+     *         quantity: 1,
+     *         price: 40000
+     *         }
+     *         ]
+     *         total: 140000
+     *         }
      */
 
     public List<FoodOrderDTO> getAllFoodOrders(String idRestaurant) {
@@ -349,31 +336,31 @@ public class BillDAO {
     }
 
     public ObjectPayment getPaymentFood(String idOrder) {
-        //Check if the order is paid
+        // Check if the order is paid
         String status = jdbi.withHandle(handle -> {
             return handle.createQuery("SELECT payment FROM orders WHERE id_order = :idOrder")
                     .bind("idOrder", idOrder)
                     .mapTo(String.class)
                     .one();
         });
-        if(status.equals("Paid"))
+        if (status.equals("Paid"))
             return null;
 
         return jdbi.withHandle(handle -> {
             // Get the total price of the order
-            List<Map<String, Object>> results = handle.createQuery(
-                    "SELECT f.price, o.quantity FROM orders as o inner join foods as f on o.id_food = f.id_food WHERE o.id_order = :idOrder and o.payment = 'Not Paid'")
+            Map<String, Object> results = handle.createQuery(
+                    "SELECT f.price, o.quantity, o.id_food FROM orders as o inner join foods as f on o.id_food = f.id_food WHERE o.id_order = :idOrder and o.payment = 'Not Paid'")
                     .bind("idOrder", idOrder)
                     .mapToMap()
-                    .list();
+                    .one();
             float total = 0;
-            for (Map<String, Object> result : results) {
-                float price = (float) result.get("price");
-                int quantity = (int) result.get("quantity");
-                total += price * quantity;
-            }
+            float price = (float) results.get("price");
+            int quantity = (int) results.get("quantity");
+            String idFood = (String) results.get("id_food");
+            total += price * quantity;
             // Get the name of the food
-            String nameFood = handle.createQuery("SELECT f.name FROM orders as o inner join foods as f on o.id_food = f.id_food WHERE o.id_order = :idOrder")
+            String nameFood = handle.createQuery(
+                    "SELECT f.name FROM orders as o inner join foods as f on o.id_food = f.id_food WHERE o.id_order = :idOrder")
                     .bind("idOrder", idOrder)
                     .mapTo(String.class)
                     .one();
@@ -384,7 +371,7 @@ public class BillDAO {
                     .bind("code", code)
                     .bind("idOrder", idOrder)
                     .execute();
-            return new ObjectPayment(nameFood, total, 1, code);
+            return new ObjectPayment(nameFood, total, quantity, code, idFood);
         });
     }
 
@@ -410,7 +397,7 @@ public class BillDAO {
         }
     }
 
-    public boolean completePaymentFood(String idOrder, String code) {
+    public boolean completePaymentFood(String idOrder, String code, String idFood) {
         try {
             // Check if the code is correct
             String codeDB = jdbi.withHandle(handle -> {
@@ -421,7 +408,32 @@ public class BillDAO {
             });
             if (!codeDB.equals(code))
                 return false;
-            
+
+            // Check if the food exists in the order => +1
+            // get id_order from id_food
+            String idOrderDB = jdbi.withHandle(handle -> {
+                return handle.createQuery("SELECT id_order FROM orders WHERE id_food = :idFood and payment = 'Paid'")
+                        .bind("idFood", idFood)
+                        .mapTo(String.class)
+                        .one();
+            });
+
+            // Update quantity
+            if (!idOrderDB.isEmpty()) {
+                jdbi.withHandle(handle -> {
+                    return handle.createUpdate("UPDATE orders SET quantity = quantity + 1 WHERE id_order = :idOrder")
+                            .bind("idOrder", idOrderDB)
+                            .execute();
+                });
+                // Delete the order
+                jdbi.withHandle(handle -> {
+                    return handle.createUpdate("DELETE FROM orders WHERE id_food = :idFood and payment = 'Not Paid'")
+                            .bind("idOrder", idOrder)
+                            .execute();
+                });
+                return true;
+            }
+
             // Pay the order
             jdbi.withHandle(handle -> {
                 return handle.createUpdate("UPDATE orders SET payment = 'Paid' WHERE id_order = :idOrder")

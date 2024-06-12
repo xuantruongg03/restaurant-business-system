@@ -5,12 +5,14 @@ public class ObjectPayment {
     private float price;
     private int quantity;
     private String code;
+    private String idFood;
 
-    public ObjectPayment(String nameFood, float price, int quantity, String code) {
+    public ObjectPayment(String nameFood, float price, int quantity, String code, String idFood) {
         this.nameFood = nameFood;
         this.price = price;
         this.quantity = quantity;
         this.code = code;
+        this.idFood = idFood;
     }
 
     public String getNameFood() {
@@ -27,5 +29,9 @@ public class ObjectPayment {
 
     public String getCode() {
         return code;
+    }
+
+    public String getIdFood() {
+        return idFood;
     }
 }
